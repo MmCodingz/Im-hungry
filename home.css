@@ -1,0 +1,82 @@
+body {
+  margin: 0px;
+  background-image: linear-gradient(to bottom right, #ffcf73, #eb9f2c);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+header {
+  padding-top: 110px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 90px;
+  margin-left: auto;
+  font-weight: 100;
+  margin-right: auto;
+  font-family: "Dancing Script", cursive;
+  margin-top: auto;
+  padding-top: 15px;
+}
+.container {
+  height: 430px;
+  width: 350px;
+  /* background-color: blue; */
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 40px;
+
+  box-sizing: border-box;
+}
+
+/* Carrot Icon  */
+i {
+  font-size: 90px;
+  /* margin-left: -190px; */
+  padding-top: 30px;
+  color: black;
+}
+
+.welcome {
+  display: flex;
+  max-width: 900px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+p .description {
+  font-size: 30px;
+}
+button {
+  min-width: 280px;
+  min-height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  margin-left: 35px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+.client_login_container {
+  /* background-color: rebeccapurple; */
+  padding-left: 62px;
+}
+.client_login_container input {
+  margin: 8px;
+  height: 30px;
+  width: 200px;
+}
+.btn {
+  margin-top: 10px;
+}
+.hidden {
+  display: none;
+}
+.error {
+  /* background-color: aliceblue; */
+  margin-top: -15px;
+  margin-bottom: -10px;
+  color: red;
+}
+.login_field {
+  margin-top: -26px;
+}

@@ -1,0 +1,44 @@
+body {
+  margin: 0px;
+}
+header {
+  min-height: 160px;
+  width: 100%;
+  background-image: linear-gradient(#ffcf73, #eb9f2c);
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+h1 {
+  font-size: 90px;
+  margin-left: auto;
+  font-weight: 100;
+  margin-right: auto;
+  font-family: "Dancing Script", cursive;
+  margin-top: auto;
+  padding-top: 15px;
+}
+
+/* Carrot Icon  */
+i {
+  font-size: 90px;
+  color: black;
+  padding-top: 30px;
+}
+
+.welcome {
+  display: flex;
+  max-width: 900px;
+  height: 150px;
+  /* background-color: #eb2cce; */
+  margin-left: auto;
+  margin-right: auto;
+}
+p .description {
+  font-size: 30px;
+}
+/* Grocery list page */
+
+.hidden {
+  display: none;
+}

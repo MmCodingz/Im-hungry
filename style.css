@@ -1,0 +1,101 @@
+body {
+  margin: 0px;
+}
+header {
+  min-height: 160px;
+  width: 100%;
+  background-image: linear-gradient(#ffcf73, #eb9f2c);
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+h1 {
+  font-size: 90px;
+  margin-left: auto;
+  font-weight: 100;
+  margin-right: auto;
+  font-family: "Dancing Script", cursive;
+  margin-top: auto;
+  padding-top: 15px;
+}
+.main-container {
+  width: 90%;
+  min-height: 900px;
+  background-color: rgba(235, 214, 187, 0.448);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.cards {
+  height: 190px;
+  width: 34%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  background-color: whitesmoke;
+  box-shadow: 5px 3px;
+  margin-top: 90px;
+}
+a {
+  color: black;
+}
+.cards a {
+  font-size: 30px;
+  text-decoration: none;
+  color: black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  display: block;
+}
+/* Carrot Icon  */
+i {
+  font-size: 90px;
+  /* margin-left: -190px; */
+  padding-top: 30px;
+}
+/* Cards Icon */
+.cards i {
+  font-size: 60px;
+  margin-top: 20px;
+  padding-bottom: 30px;
+}
+.welcome {
+  display: flex;
+  max-width: 900px;
+  height: 150px;
+  /* background-color: #eb2cce; */
+  margin-left: auto;
+  margin-right: auto;
+}
+p .description {
+  font-size: 30px;
+}
+/* Grocery list page */
+.box {
+  background-color: aqua;
+  min-height: 50px;
+  font-size: larger;
+}
+.list {
+  width: 600px;
+  height: 900px;
+  background-color: rgba(228, 159, 68, 0.348);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+h3 {
+  text-align: center;
+  font-size: 30px;
+}
+/* Meal plan Page */
+form {
+  text-align: center;
+}
+.hidden {
+  display: none;
+}

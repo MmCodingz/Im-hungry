@@ -1,0 +1,226 @@
+body {
+  margin: 0px;
+}
+header {
+  min-height: 160px;
+  width: 100%;
+  background-image: linear-gradient(#ffcf73, #eb9f2c);
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+h1 {
+  font-size: 90px;
+  margin-left: auto;
+  font-weight: 100;
+  margin-right: auto;
+  font-family: "Dancing Script", cursive;
+  margin-top: auto;
+  padding-top: 15px;
+}
+/* Carrot Icon  */
+i {
+  font-size: 90px;
+  padding-top: 30px;
+  color: black;
+}
+.welcome {
+  display: flex;
+  max-width: 900px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* PLAN YOUR MEAL */
+
+.container {
+  width: 85%;
+  height: 1500px;
+  background-color: green;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.meal_planing {
+  width: 45%;
+  height: 1360px;
+  background-color: indianred;
+}
+.flex {
+  display: flex;
+}
+
+.display_plan {
+  width: 55%;
+  min-height: 1360px;
+  background-color: yellow;
+}
+.meal {
+  width: 55%;
+}
+
+.font_username {
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900px;
+}
+.font_food {
+  font-size: medium;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  margin-top: -1px;
+}
+.day_of_week {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+}
+label {
+  font-size: 20px;
+  font-weight: 300;
+  margin-right: 20px;
+  padding-bottom: 3px;
+}
+.name_date {
+  width: auto;
+  min-height: 70px;
+  background-color: yellowgreen;
+}
+#display_date {
+  font-weight: 900;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+.nameOfGuess label {
+  /* background-color: #eb9f2c; */
+  margin-bottom: 20px;
+}
+.name_date input {
+  width: 100px;
+  float: right;
+}
+.warning {
+  color: red;
+  margin-top: 3px;
+}
+
+.pickOne label {
+  margin-right: 0px;
+  margin-left: 4px;
+}
+
+select {
+  width: 100px;
+  height: 25px;
+  float: right;
+  margin-bottom: 5px;
+}
+.addmore {
+  width: 50%;
+
+  margin-left: 40px;
+  margin-right: 100px;
+}
+.addmore label {
+  font-size: 18px;
+}
+.addmore button {
+  float: right;
+  margin-left: 3px;
+  position: absolute;
+  padding: 2px;
+  margin-top: 2px;
+}
+[type="checkbox"] {
+  display: inline-block;
+}
+.pickOne {
+  min-width: 500px;
+  min-height: 100px;
+  background-color: grey;
+  line-height: 30px;
+  flex-direction: column;
+}
+li {
+  display: inline-block;
+}
+
+.add_plan {
+  width: 500px;
+
+  margin-left: 100px;
+  margin-top: 50px;
+}
+.add_plan button {
+  padding: 5px;
+  width: 300px;
+  border: solid black;
+}
+
+/* MODAL */
+.modal_question {
+  position: absolute;
+  width: 220px;
+  height: 100px;
+  background-color: white;
+  border: solid 3px black;
+  margin-left: 500px;
+  margin-top: 100px;
+  padding: 5px;
+}
+.modal_question button {
+  float: right;
+  /* background-color: #eb9f2c; */
+  padding-left: 15px;
+  margin-left: 5px;
+}
+.modal {
+  position: absolute;
+  width: 550px;
+  height: 200px;
+  background-color: white;
+  border: solid 3px black;
+  margin-left: 500px;
+  margin-top: 100px;
+  padding: 5px;
+}
+.modal h2 {
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+.modal label {
+  margin: 0px;
+  margin-bottom: 20px;
+  margin-left: 15px;
+
+  padding-bottom: 9px;
+}
+.modal select,
+.modal input {
+  float: right;
+  width: 110px;
+  margin-right: 30px;
+}
+.modal input {
+  width: 102px;
+  /* background-color: aqua; */
+}
+
+.modal button {
+  margin-top: 30px;
+  float: right;
+  padding: 3px 5px;
+  margin-right: -120px;
+}
+.close_modal {
+  font-family: sans-serif;
+  float: right;
+  margin-top: -15px;
+  margin-right: 5px;
+}
+.hidden {
+  display: none;
+}

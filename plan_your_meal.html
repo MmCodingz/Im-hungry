@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plan Your Meal</title>
+    <link rel="stylesheet" href="plan_your_meal.css" />
+    <!-- This is the link for google font for the welcome p tag -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Playfair+Display&family=Poppins:ital,wght@1,300&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="welcome">
+        <h1>Plan your meal.html</h1>
+        <a href="index.html"><i class="fa-solid fa-carrot"></i></a>
+      </div>
+      <p class="description">
+        Create a weekly meal plan to create a stress free meal, the right
+        nutrition for your family, minimal trips to the grocery store and making
+        use of left overs to minimize waste
+      </p>
+    </header>
+    <main>
+      <div class="container seven">
+        <div class="modal_question hidden">
+          <p>Would you like to add another breakfast?</p>
+          <button id="yes">yes</button>
+          <button id="no">no</button>
+        </div>
+
+        <div class="modal hidden">
+          <div class="modal_header">
+            <p class="close_modal">X</p>
+
+            <h2>Customer ingredients</h2>
+          </div>
+          <div class="modal_main">
+            <form action="/">
+              <div class="motal_ing">
+                <label for="new_ingredient">Enter your ingredient</label>
+                <input
+                  type="text"
+                  id="new_ingredient"
+                  placeholder="ingredient"
+                />
+              </div>
+              <div class="modal_nameForGroc">
+                <label for="modal_name">Enter Item name for grocery List</label>
+                <input type="text" id="modal_name" placeholder="Item Name" />
+              </div>
+              <div class="motal_cat">
+                <label for="categorie">categorie</label>
+                <select name="categorie" id="categorie">
+                  <option value="protein">protein</option>
+                  <option value="grain">grain</option>
+                  <option value="dairy">dairy</option>
+                  <option value="fruit">fruit</option>
+                  <option value="veggie">veggie</option>
+                  <option value="condiment">condiment</option>
+                  <option value="spices">spices</option>
+                  <option value="herbs">herbs</option>
+                </select>
+              </div>
+            </form>
+            <button class="done">Done</button>
+          </div>
+        </div>
+        <div class="meal_planing">
+          <div class="flex name_date">
+            <div class="name_date">
+              <div class="date">
+                <form action="">
+                  <label for="date">Day</label>
+                  <input id="date" placeholder="Day" type="text" />
+                </form>
+                <p class="date_warning warning hidden">A day most be entered</p>
+              </div>
+
+              <div class="nameOfGuess">
+                <form action="">
+                  <label for="name1">Name</label>
+                  <input id="name1" placeholder="Name" type="text" />
+                </form>
+                <p class="name_warning warning hidden">
+                  A name most be entered
+                </p>
+              </div>
+            </div>
+          </div>
+          <h2>Breakfast</h2>
+          <div class="flex homemade">
+            <div class="meal">
+              <form action="/">
+                <label for="homemade">Homemade</label>
+                <select name="homemade" id="homemade">
+                  <option value="none">none</option>
+                  <option value="pancake">Pancake</option>
+                  <option value="muffin">muffin</option>
+                </select>
+              </form>
+            </div>
+            <div class="addmore">
+              <button class="add_more homemade">Add Another?</button>
+            </div>
+          </div>
+          <div class="flex protein">
+            <div class="meal">
+              <form action="/">
+                <label for="protein">Protein</label>
+                <select name="protein" id="protein">
+                  <option value="none">none</option>
+                  <option value="Scrambled Eggs">Scrambled Eggs</option>
+                  <option value="Eggs Dip Dip">Eggs Dip Dip</option>
+                </select>
+              </form>
+            </div>
+            <div class="addmore">
+              <button class="add_more protein">Add Another?</button>
+            </div>
+          </div>
+          <div class="flex grain">
+            <div class="meal">
+              <form action="/">
+                <label for="grain">Grain</label>
+                <select name="grain" id="grain">
+                  <option value="none">none</option>
+                  <option value="Scrambled Eggs">Scrambled Eggs</option>
+                  <option value="Eggs Dip Dip">Eggs Dip Dip</option>
+                </select>
+              </form>
+            </div>
+            <div class="addmore grain">
+              <button class="add_more">Add Another?</button>
+            </div>
+          </div>
+          <div class="flex dairy">
+            <div class="meal">
+              <form action="/">
+                <label for="dairy">Dairy</label>
+                <select name="dairy" id="dairy">
+                  <option value="none">none</option>
+                  <option value="Yougurt ">Yougurt</option>
+                  <option value="Chesse">Chesse</option>
+                </select>
+              </form>
+            </div>
+            <div class="addmore">
+              <button class="add_more dairy">Add Another?</button>
+            </div>
+          </div>
+          <div class="flex fruits">
+            <div class="meal">
+              <form action="/">
+                <label for="fruits">Fruits</label>
+                <select name="fruits" id="fruits">
+                  <option value="none">none</option>
+                  <option value="Apple">Apple</option>
+                  <option value="Banana">Banana</option>
+                </select>
+              </form>
+            </div>
+            <div class="addmore">
+              <button class="add_more fruit">Add Another?</button>
+            </div>
+          </div>
+
+          <div class="flex veggies">
+            <div class="meal">
+              <form action="/">
+                <label for="veggies">Veggies</label>
+                <select name="veggies" id="veggies">
+                  <option value="none">none</option>
+                  <option value="Cucumbers">Cucumbers</option>
+                  <option value="Carrotts">Carrotts</option>
+                </select>
+              </form>
+            </div>
+            <div class="addmore">
+              <button class="add_more veggies">Add Another?</button>
+            </div>
+          </div>
+          <!-- <div class="flex desert">
+            <div class="meal">
+              <form action="/">
+                <label for="dersert">Dersert</label>
+                <select name="dersert" id="dersert">
+                  <option value="none">none</option>
+                  <option value="Chocolat cake">chocolat cake</option>
+                  <option value="Carrott Cake">Carrott Cake</option>
+                </select>
+              </form>
+            </div>
+            <div class="addmore">
+              <button class="add_more veggies">Add Another?</button>
+            </div>
+          </div> -->
+          <div class="flex beverage">
+            <div class="meal">
+              <form action="/">
+                <label for="beverage">beverage</label>
+                <select name="beverage" id="beverage">
+                  <option value="none">none</option>
+                  <option value="Apple juice">Apple juice</option>
+                  <option value="coffee">coffee</option>
+                </select>
+              </form>
+            </div>
+            <div class="addmore">
+              <button class="add_more beverage">Add Another?</button>
+            </div>
+          </div>
+          <div class="flex condiment">
+            <div class="meal">
+              <form action="/">
+                <h3 style="font-size: 15; font-weight: 300">Condiments</h3>
+
+                <div id="condiment" class="pickOne">
+                  <li>
+                    <label for="ketchup">ketchup</label>
+                    <input
+                      style="position: relative"
+                      type="checkbox"
+                      name="condiments"
+                      value="ketchup"
+                      id="ketchup"
+                    />
+                  </li>
+                  <li>
+                    <label for="mayo">mayo</label>
+                    <input
+                      type="checkbox"
+                      name="condiments"
+                      value="mayo"
+                      id="mayo"
+                    />
+                  </li>
+                  <li>
+                    <label for="maple syrup">maple syrup</label>
+                    <input
+                      type="checkbox"
+                      name="condiments"
+                      value="maple syrup"
+                      id="maple syrup"
+                    />
+                  </li>
+                  <li>
+                    <label for="butter">butter</label>
+                    <input
+                      type="checkbox"
+                      name="condiments"
+                      value="butter"
+                      id="butter"
+                    />
+                  </li>
+                  <li>
+                    <label for="hot sauce">hot sauce</label>
+                    <input
+                      type="checkbox"
+                      name="condiments"
+                      value="hot sauce"
+                      id="hot sauce"
+                    />
+                  </li>
+                  <li>
+                    <label for="mustard">mustard</label>
+                    <input
+                      type="checkbox"
+                      name="condiments"
+                      value="mustard"
+                      id="mustard"
+                    />
+                  </li>
+
+                  <li>
+                    <label for="bbq">bbq</label>
+                    <input
+                      type="checkbox"
+                      name="condiments"
+                      value="bbq"
+                      id="bbq"
+                    />
+                  </li>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- <div class="flex spices">
+            <div class="meal">
+              <form action="/">
+                <h3 style="font-size: 15; font-weight: 300">Spices</h3>
+
+                <div id="spices" class="pickOne">
+                  <li>
+                    <label for="salt">salt</label>
+                    <input
+                      type="checkbox"
+                      name="spices"
+                      value="salt"
+                      id="salt"
+                    />
+                  </li>
+                  <li>
+                    <label for="pepper">pepper</label>
+                    <input
+                      type="checkbox"
+                      name="spices"
+                      value="pepper"
+                      id="pepper"
+                    />
+                  </li>
+                  <li>
+                    <label for="garlic powder">garlic powder</label>
+                    <input
+                      type="checkbox"
+                      name="spices"
+                      value="garlic powder"
+                      id="garlic powder"
+                    />
+                  </li>
+                  <li>
+                    <label for="onion powder">onion powder</label>
+                    <input
+                      type="checkbox"
+                      name="spices"
+                      value="onion powder"
+                      id="onion powder"
+                    />
+                  </li>
+
+                  <li>
+                    <label for="paprika">paprika</label>
+                    <input
+                      type="checkbox"
+                      name="spices"
+                      value="paprika"
+                      id="paprika"
+                    />
+                  </li>
+                  <li>
+                    <label for="chili flakes">chili flakes</label>
+                    <input
+                      type="checkbox"
+                      name="spices"
+                      value="chili flakes"
+                      id="chili flakes"
+                    />
+                  </li>
+                  <li>
+                    <label for="curry">curry</label>
+                    <input
+                      type="checkbox"
+                      name="spices"
+                      value="curry"
+                      id="curry"
+                    />
+                  </li>
+                </div>
+              </form>
+            </div>
+          </div> -->
+          <!-- <div class="flex herbs">
+            <div class="meal">
+              <form action="/">
+                <h3 style="font-size: 15; font-weight: 300">Herbs</h3>
+
+                <div id="herbs" class="pickOne">
+                  <li>
+                    <label for="garlic">garlic</label>
+                    <input
+                      type="checkbox"
+                      name="herbs"
+                      value="garlic"
+                      id="garlic"
+                    />
+                  </li>
+                  <li>
+                    <label for="parsley">parsley</label>
+                    <input
+                      type="checkbox"
+                      name="herbs"
+                      value="parsley"
+                      id="parsley"
+                    />
+                  </li>
+                  <li>
+                    <label for="cilantro">cilantro</label>
+                    <input
+                      type="checkbox"
+                      name="herbs"
+                      value="cilantro"
+                      id="cilantro"
+                    />
+                  </li>
+                  <li>
+                    <label for="basil">basil</label>
+                    <input
+                      type="checkbox"
+                      name="herbs"
+                      value="basil"
+                      id="basil"
+                    />
+                  </li>
+                  <li>
+                    <label for="rosemary">rosemary</label>
+                    <input
+                      type="checkbox"
+                      name="herbs"
+                      value="rosemary"
+                      id="rosemary"
+                    />
+                  </li>
+                  <li>
+                    <label for="tyme">tyme</label>
+                    <input
+                      type="checkbox"
+                      name="herbs"
+                      value="tyme"
+                      id="tyme"
+                    />
+                  </li>
+                  <li>
+                    <label for="none">none</label>
+                    <input
+                      type="checkbox"
+                      name="herbs"
+                      value="none"
+                      id="none"
+                    />
+                  </li>
+                </div>
+              </form>
+            </div>
+          </div> -->
+          <div class="flex additems+btn">
+            <div class="meal">
+              <div class="notfound">
+                <p>
+                  Not seing what you are looking for? Click the button below to
+                  add your own ingredients
+                </p>
+                <button id="open_modal">Add ingredient</button>
+              </div>
+              <div class="add_plan">
+                <button class="btn_add_plan">Add Breakfast</button>
+                <button class="btn_add_plan lunch hidden">Add Lunch</button>
+                <button class="btn_add_plan supper hidden">Add Supper</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="display_plan"></div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+    <script
+      src="https://kit.fontawesome.com/055b193f00.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

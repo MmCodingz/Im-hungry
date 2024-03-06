@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+
+    <link rel="stylesheet" href="signup.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="split left">
+          <div class="header_of_left">
+            <h1>
+              SIGN UP.HTML You are one step closser to be creating amazing
+              recepies with no stress because you now know ... <br />
+              <span style="color: white; font-weight: bolder; font-size: 60px"
+                >whats for supper</span
+              >
+            </h1>
+          </div>
+        </div>
+
+        <div class="split right">
+          <div class="header_of_right">
+            <h1>Create an account</h1>
+          </div>
+
+          <form action="/">
+            <div class="login_field">
+              <p>Create a username</p>
+              <input id="createUsername" type="text" placeholder="username" />
+              <div class="error errorCreateUsername hidden">
+                <p>You must enter a UserName</p>
+              </div>
+              <p>Enter your Email Address</p>
+              <input id="createEmail" type="text" placeholder="email" />
+              <div class="error errorCreateEmail hidden">
+                <p>You must enter a valid Email</p>
+              </div>
+              <p>Create a secure Password</p>
+              <input
+                id="createPassword"
+                type="password"
+                placeholder="password"
+              />
+              <div class="error errorCreatePassword hidden">
+                <p>You must enter a valid Password</p>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="terms" name="terms" checked />
+                <label for="terms">sign me up for news letters</label>
+              </div>
+
+              <div class="btn">
+                <a id="account_create" href="#">
+                  <button id="account_create_button" type="button">
+                    Start Cooking
+                  </button>
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- my js script -->
+    <script src="script.js"></script>
+    <!-- This is for the font awesome -->
+    <script
+      src="https://kit.fontawesome.com/055b193f00.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

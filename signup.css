@@ -1,0 +1,93 @@
+body {
+  margin: 0px;
+}
+.header_of_right {
+  margin-left: 30px;
+}
+.header_of_left {
+  height: 900px;
+  width: 500px;
+  /* background-color: aquamarine; */
+  margin-left: 130px;
+  margin-top: 120px;
+  text-align: center;
+}
+h1 {
+  line-height: 2;
+}
+
+.container {
+  height: 200%;
+  width: 100%;
+  background-image: linear-gradient(to bottom right, #ffcf73, #eb9f2c);
+  position: fixed;
+
+  display: flex;
+}
+
+button {
+  min-width: 500px;
+  min-height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #eb9f2c;
+  margin-top: 45px;
+  cursor: pointer;
+}
+.left {
+  flex: 1;
+}
+
+.right {
+  background-color: white;
+  flex: 1;
+  border-radius: 30px;
+}
+.login_field input {
+  /* margin: 8px; */
+  height: 30px;
+  width: 500px;
+  border-radius: 10px;
+}
+.login_field {
+  margin-left: 50px;
+}
+p {
+  color: gray;
+}
+.error p {
+  color: red;
+}
+.btn {
+  margin-top: 10px;
+}
+.hidden {
+  display: none;
+}
+.error {
+  /* background-color: aliceblue; */
+  margin-top: -15px;
+  margin-bottom: -10px;
+  color: red;
+}
+input[type="checkbox"] {
+  margin-top: 10px;
+  display: inline-block;
+  vertical-align: top;
+  width: 16px;
+}
+
+.checkbox label {
+  position: absolute;
+  margin-top: 15px;
+  margin-left: 9px;
+  /* -ms-transform: translateY(-50%); */
+  /* transform: translateY(-50%); */
+  color: rebeccapurple;
+}
+.checkbox {
+  margin-top: 10px;
+}
+input {
+  margin-top: -10px;
+}
