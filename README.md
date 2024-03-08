@@ -1,11 +1,11 @@
 <!-- You have some code in your script.js file that only relates to a single page (such as sign up/sign in). Consider splitting this into its own .js file that can be used on those pages html files. If you do this, there's less of a need to check if elements exist on the page, which will reduce some of the if checks you need to make. -->
 
-A form is meant to be a single container for a collection of inputs rather than multiple tiny forms.
+<!-- A form is meant to be a single container for a collection of inputs rather than multiple tiny forms.
 
-A form is usually used when you want to send the input values to a server, in your case, you could build the whole page without a form element and then use your event listener on the submit button to process the form data
+A form is usually used when you want to send the input values to a server, in your case, you could build the whole page without a form element and then use your event listener on the submit button to process the form data -->
 
-Plan Your Meals Page
-(Code organization) Your page is split into sections, and it would be great to organize your code to match them!
+    Plan Your Meals Page
+    (Code organization) Your page is split into sections, and it would be great to organize your code to match them!
 
 (Design) Your day selection could be a date input OR a select dropdown with days of the week as options
 

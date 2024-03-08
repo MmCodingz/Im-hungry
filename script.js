@@ -1,8 +1,3 @@
-// This is for the log in
-// to do:
-//,make a function to push the value into the user, the function will have to make sure that the user email is unique
-// add a welcome sign on the home page
-
 //ANCHOR - MEAL PLAN
 // GLOBAL VARIABLE
 const date = document.getElementById("date");
@@ -34,17 +29,88 @@ const userNameInput = document.createElement("p");
 const breakfast = document.createElement("p");
 const lunch = document.createElement("p");
 const supper = document.createElement("p");
+const btnLunch = document.querySelector(".lunch");
+const btnSupper = document.querySelector(".supper");
+//
+//
+//SECTION - NAME AND DATE RELATED CODE:
 
-//
-//
-//
-// FOOD OPTIONS VALUE ARRAY
+//Desable name and date inputfield
+const disable = function (on_off) {
+  if (on_off === true) {
+    document.getElementById("name1").disabled = true;
+    document.getElementById("date").disabled = true;
+  } else {
+    document.getElementById("name1").disabled = false;
+    document.getElementById("date").disabled = false;
+  }
+};
 
-// BUTTON TO SCROLL UP TO THE TOP OF THE PAGE
-function topFunction(number) {
-  document.documentElement.scrollTop = number; //
+//No name and no date
+const warning = function () {
+  const noName = document.querySelector(".name_warning ");
+  const noDate = document.querySelector(".date_warning");
+  let nameAndDate = true;
+  if (name1.value === "") {
+    noName.classList.remove("hidden");
+    nameAndDate = false;
+  } else {
+    noName.classList.add("hidden");
+  }
+  if (date.value === "") {
+    noDate.classList.remove("hidden");
+    nameAndDate = false;
+  } else {
+    noDate.classList.add(".hidden");
+  }
+  if (nameAndDate === true) {
+    disable(true);
+    addPlanToGrocery();
+    // addCheckboxItems();
+    createDomElementBreakfast();
+    resetMealOption();
+  }
+};
+
+//SECTION - GROCERYLIST REALATED CODE
+
+//Adding item to the grocery list page
+if (list) {
+  groceryListStorage = JSON.parse(localStorage.getItem("grocerieList"));
+  document.getElementById("homemade_list").innerHTML =
+    groceryListStorage.homemade;
+  document.getElementById("fruit_list").innerHTML = groceryListStorage.fruit;
+  document.getElementById("list_Veggies").innerHTML =
+    groceryListStorage.veggies;
+  // adding eggs instead on 'scrambled eggs
+
+  let proteinArr = groceryListStorage.protein;
+  let proteinstr = proteinArr.toString();
+  let isItEgg = proteinstr.includes("Eggs");
+  if (groceryListStorage.protein && isItEgg) {
+    document.getElementById("list_protein").innerHTML = "Eggs";
+  } else {
+    document.getElementById("list_protein").innerHTML =
+      groceryListStorage.protein;
+  }
+  //adding bread instead of toast
+  let grainArr = groceryListStorage.grain;
+  let grainstr = grainArr.toString();
+  let isItbread = grainstr.includes("Toast");
+  if (groceryListStorage.grain && isItbread) {
+    document.getElementById("list_grains").innerHTML = "Bread";
+  } else {
+    document.getElementById("list_grains").innerHTML = groceryListStorage.grain;
+  }
+  document.getElementById("list_dairy").innerHTML = groceryListStorage.dairy;
+  document.getElementById("list_condiments").innerHTML =
+    groceryListStorage.condiments;
+  document.getElementById("list_spices").innerHTML = groceryListStorage.spices;
+  document.getElementById("list_herbs").innerHTML = groceryListStorage.herbs;
+  document.getElementById("list_drinks").innerHTML =
+    groceryListStorage.beverage;
 }
-//GROCERIE OBJECT
+//grocery Object
 let grocerieList = {
   homemade: [],
   fruit: [],
@@ -58,8 +124,7 @@ let grocerieList = {
   spices: [],
   beverage: [],
 };
-
-//THIS IS AN ARRAY OF ALL THE DIFFRENT BREAKFAST CATEGORIE
+//Breakfast category array
 let grocerieListArr = [
   grocerieList.homemade,
   grocerieList.protein,
@@ -72,8 +137,51 @@ let grocerieListArr = [
   grocerieList.spices,
   grocerieList.herbs,
 ];
+//Function to push selected item to GL object
+const addPlanToGrocery = function () {
+  grocerieList.homemade.push(homemadeBreakfast.value);
+  console.log(grocerieList.homemade);
+  console.log(grocerieList);
+  grocerieList.protein.push(breakfastProtein.value);
+  grocerieList.grain.push(breakfastGrain.value);
+  grocerieList.fruit.push(breakfastFruit.value);
+  grocerieList.veggies.push(breakfastVeggie.value);
+  grocerieList.dairy.push(breakfastDairy.value);
 
-//THIS IS TO GET THE VALUE OF THE CHECKBOXES
+  grocerieList.beverage.push(breakfastBeverage.value);
+  addCheckboxItems();
+};
+
+//SECTION -FUNCTION OF THE PAGE
+
+//Scroll up the page function
+function topFunction(number) {
+  document.documentElement.scrollTop = number; //
+}
+//Reset meal option
+const resetMealOption = function () {
+  topFunction(220);
+  homemade.selectedIndex = 0;
+  protein.selectedIndex = 0;
+  fruits.selectedIndex = 0;
+  veggies.selectedIndex = 0;
+  grain.selectedIndex = 0;
+  dairy.selectedIndex = 0;
+  beverage.selectedIndex = 0;
+  const condiment = document.getElementsByName("condiments");
+  for (let i = 0; i < condiment.length; i++) {
+    if (condiment[i].checked === true) {
+      condiment[i].checked = false;
+    }
+  }
+
+  grocerieListArr.map((el) => (el.length = 0));
+  console.log(grocerieList.condiments);
+};
+
+//SECTION - FUNCTIONS RELATED TO THE DISPLAY OF THE PAGE
+
+//Value of checkbox
 const addCheckboxItems = function () {
   const condiments = document.getElementsByName("condiments");
   const spices = document.getElementsByName("spices");
@@ -99,7 +207,7 @@ const addCheckboxItems = function () {
     }
   }
 };
-//DISPLAY DAILY MENUE
+//Display menue
 const displayMeal = function (...items) {
   const itemArr = items.flat(2);
   const justItems = itemArr.filter((el) => el !== "none");
@@ -108,8 +216,7 @@ const displayMeal = function (...items) {
 
   return finishedItemStr;
 };
-//FUNCTION TO CREATE DOM ELEMENT FOR USERS,DATE,AND MEAL PLAN
-
+//Create Dom element for meal
 const createDomElementBreakfast = function () {
   let food = displayMeal(grocerieListArr);
   console.log(grocerieListArr);
@@ -128,7 +235,6 @@ const createDomElementBreakfast = function () {
 
   userNameInput.appendChild(breakfast);
 };
-
 const createDomElementLunch = function () {
   let food = displayMeal(grocerieListArr);
   console.log(food);
@@ -149,8 +255,9 @@ const createDomElementSupper = function () {
 
   lunch.appendChild(supper);
 };
-// BUTTON TO ADD ANOTHER ITEM for Select menue
 
+//SECTION - BUTTONS
+//Add more item
 const addMoreItems = function () {
   if (btnAddMore) {
     for (let i = 0; i < btnAddMore.length; i++) {
@@ -188,112 +295,8 @@ const addMoreItems = function () {
     }
   }
 };
-
 addMoreItems();
-//FUNCTION TO ADD SELECTED ITEM TO GROCERIE LIST OBJECT
-const addPlanToGrocery = function () {
-  grocerieList.homemade.push(homemadeBreakfast.value);
-  console.log(grocerieList.homemade);
-  console.log(grocerieList);
-  grocerieList.protein.push(breakfastProtein.value);
-  grocerieList.grain.push(breakfastGrain.value);
-  grocerieList.fruit.push(breakfastFruit.value);
-  grocerieList.veggies.push(breakfastVeggie.value);
-  grocerieList.dairy.push(breakfastDairy.value);
-
-  grocerieList.beverage.push(breakfastBeverage.value);
-  addCheckboxItems();
-};
-
-//STORING THE GROCERYLIST OBJECT TO LOCAL STORAGE
-const storingItemInGroceryListObj = function () {
-  const groceryListstorageStr = JSON.stringify(grocerieList);
-  localStorage.setItem("grocerieList", groceryListstorageStr);
-};
-// ADDING ITEMS TO THE GROCERIE LIST
-if (list) {
-  groceryListStorage = JSON.parse(localStorage.getItem("grocerieList"));
-  document.getElementById("homemade_list").innerHTML =
-    groceryListStorage.homemade;
-  document.getElementById("fruit_list").innerHTML = groceryListStorage.fruit;
-  document.getElementById("list_Veggies").innerHTML =
-    groceryListStorage.veggies;
-  // adding eggs instead on 'scrambled eggs
-
-  let proteinArr = groceryListStorage.protein;
-  let proteinstr = proteinArr.toString();
-  let isItEgg = proteinstr.includes("Eggs");
-  if (groceryListStorage.protein && isItEgg) {
-    document.getElementById("list_protein").innerHTML = "Eggs";
-  } else {
-    document.getElementById("list_protein").innerHTML =
-      groceryListStorage.protein;
-  }
-  //adding bread instead of toast
-  let grainArr = groceryListStorage.grain;
-  let grainstr = grainArr.toString();
-  let isItbread = grainstr.includes("Toast");
-  if (groceryListStorage.grain && isItbread) {
-    document.getElementById("list_grains").innerHTML = "Bread";
-  } else {
-    document.getElementById("list_grains").innerHTML = groceryListStorage.grain;
-  }
-  document.getElementById("list_dairy").innerHTML = groceryListStorage.dairy;
-  document.getElementById("list_condiments").innerHTML =
-    groceryListStorage.condiments;
-  document.getElementById("list_spices").innerHTML = groceryListStorage.spices;
-  document.getElementById("list_herbs").innerHTML = groceryListStorage.herbs;
-  document.getElementById("list_drinks").innerHTML =
-    groceryListStorage.beverage;
-}
-//RESEST MEAL OPTION
-const resetMealOption = function () {
-  topFunction(220);
-  homemade.selectedIndex = 0;
-  protein.selectedIndex = 0;
-  fruits.selectedIndex = 0;
-  veggies.selectedIndex = 0;
-  grain.selectedIndex = 0;
-  dairy.selectedIndex = 0;
-  beverage.selectedIndex = 0;
-  const condiment = document.getElementsByName("condiments");
-  for (let i = 0; i < condiment.length; i++) {
-    if (condiment[i].checked === true) {
-      condiment[i].checked = false;
-    }
-  }
-
-  grocerieListArr.map((el) => (el.length = 0));
-  console.log(grocerieList.condiments);
-};
-//NO NAME AND NO DATE
-const warning = function () {
-  const noName = document.querySelector(".name_warning ");
-  const noDate = document.querySelector(".date_warning");
-  let nameAndDate = true;
-  if (name1.value === "") {
-    noName.classList.remove("hidden");
-    nameAndDate = false;
-  } else {
-    noName.classList.add("hidden");
-  }
-  if (date.value === "") {
-    noDate.classList.remove("hidden");
-    nameAndDate = false;
-  } else {
-    noDate.classList.add(".hidden");
-  }
-  if (nameAndDate === true) {
-    disable(true);
-    addPlanToGrocery();
-    // addCheckboxItems();
-    createDomElementBreakfast();
-    resetMealOption();
-  }
-};
-const btnLunch = document.querySelector(".lunch");
-const btnSupper = document.querySelector(".supper");
-//BTN ADD BREAKFAST
+//btn add breakfast
 if (btnBreakfast) {
   btnBreakfast.addEventListener("click", function () {
     storingItemInGroceryListObj();
@@ -303,8 +306,7 @@ if (btnBreakfast) {
     btnBreakfast.classList.add("hidden");
   });
 }
-
-//BTN ADD LUNCH
+//btn add lunch
 if (btnLunch) {
   btnLunch.addEventListener("click", function () {
     addPlanToGrocery();
@@ -316,7 +318,7 @@ if (btnLunch) {
     btnLunch.classList.add("hidden");
   });
 }
-//BTN ADD SUPPER
+//btn add supper
 if (btnSupper) {
   btnSupper.addEventListener("click", function () {
     addPlanToGrocery();
@@ -328,53 +330,35 @@ if (btnSupper) {
     // resetMealOption();
   });
 }
-// Desable name and date input field
-const disable = function (on_off) {
-  if (on_off === true) {
-    document.getElementById("name1").disabled = true;
-    document.getElementById("date").disabled = true;
-  } else {
-    document.getElementById("name1").disabled = false;
-    document.getElementById("date").disabled = false;
-  }
+
+//SECTION - LOCAL STORAGE
+// Storing groceryList object to Local Storage
+const storingItemInGroceryListObj = function () {
+  const groceryListstorageStr = JSON.stringify(grocerieList);
+  localStorage.setItem("grocerieList", groceryListstorageStr);
 };
 
-// SUBMIT BUTTON FOR MEAL PLAN
-
 ///ANCHOR - /MODAL
-//FUNCTION TO REMOVE HIDDEN CLASS
-if (btncloseModal) {
-  const closeModal = function () {
-    btncloseModal.addEventListener("click", function () {
-      model.classList.add("hidden");
-    });
-  };
-}
-if (modalQuestion) {
-  btnYes.addEventListener("click", function () {
-    modalQuestion.classList.add("hidden");
-    createDomElement();
-    resetMealOption();
-  });
+const modalDoneBtn = document.querySelector(".done");
 
-  btnNo.addEventListener("click", function () {
-    modalQuestion.classList.add("hidden");
-    topFunction(220);
-    resetMealOption();
+//SECTION - MODAL BUTTONS
+//Btn to open Modal to add new ingredients
+if (btnOpenModal) {
+  btnOpenModal.addEventListener("click", function () {
+    model.classList.remove("hidden");
+    topFunction(320);
   });
 }
-
-// THIS IS TO CLOSE THE MODAL CLICKING ON THE X
+// Btn X to close Modal
 if (btncloseModal) {
   btncloseModal.addEventListener("click", function () {
     model.classList.add("hidden");
   });
 }
 
-// THIS IS FOR THE MODAL DONE BTN
-const modalDoneBtn = document.querySelector(".done");
+//SECTION - MODAL STORAGE CODE
 
-//AFTER CLICKING DONE ON MODAL, ADDING NEW ING TO storage and display
+//Adding new Ing to storage and displaying new ingredient on the option menue
 
 if (modalDoneBtn) {
   modalDoneBtn.addEventListener("click", function () {
@@ -421,21 +405,10 @@ if (modalDoneBtn) {
         breakfastCondiments
       );
     }
-    // if (catOfNewIngredient.value === "spices") {
-    //   newIngSpice.push(nameOfNewIngredient.value);
-    //   localStorage.setItem("newIngSpice", JSON.stringify(newIngSpice));
-    //   displayNewItemsAfterDoneBtn("input", newIngSpice, breakfastSpice);
-    // }
-    // if (catOfNewIngredient.value === "herbs") {
-    //   newIngHerb.push(nameOfNewIngredient.value);
-    //   localStorage.setItem("newIngHerb", JSON.stringify(newIngHerb));
-    //   displayNewItemsAfterDoneBtn("input", newIngHerb, breakfastHerb);
-    // }
   });
 }
 
-//THIS IS THE LOCAL STORAGE OF ALL THE INGREDIENTS IN THE DIFFRENT CATEGORIES
-
+//Local storage of all new Ing
 const localStorageContentProtein = localStorage.getItem("newIngProtein");
 let newIngProtein;
 if (localStorageContentProtein === null) {
@@ -486,25 +459,10 @@ if (localStorageContentCondiment === null) {
   newIngCondiment = JSON.parse(localStorageContentCondiment);
   grocerieList.condiments.push(newIngCondiment);
 }
-// const localStorageContentSpice = localStorage.getItem("newIngSpice");
-// let newIngSpice;
-// if (localStorageContentSpice === null) {
-//   newIngSpice = [];
-// } else {
-//   newIngSpice = JSON.parse(localStorageContentSpice);
-//   grocerieList.spices.push(newIngSpice);
-// }
-// const localStorageContentHerb = localStorage.getItem("newIngHerb");
-// let newIngHerb;
-// if (localStorageContentHerb === null) {
-//   newIngHerb = [];
-// } else {
-//   newIngHerb = JSON.parse(localStorageContentHerb);
-//   grocerieList.herbs.push(newIngHerb);
-// }
 
-// FUNCTION TO DISPLAY THE  NEW ITEM TO OPTION MENU ON LOAD
+//SECTION - FUNCTION FOR DISPLAY NEW ITEM
 
+//Display new Item to page
 const displayNewItems = function (element, ing, categorie) {
   if (element === "input") {
     for (let i = 0; i < ing.length; i++) {
@@ -539,7 +497,7 @@ const displayNewItems = function (element, ing, categorie) {
     }
   }
 };
-// FUNCTION TO DISPLAY THE LAST ITEM OF THE ARRAY TO OPTION MENU AFTER THE DONE BUTTON IS PUSHED
+//display new Item after adding a new Item
 const displayNewItemsAfterDoneBtn = function (element, ing, categorie) {
   if (element === "input") {
     let checkbox = document.createElement(element);
@@ -571,7 +529,7 @@ const displayNewItemsAfterDoneBtn = function (element, ing, categorie) {
   }
 };
 
-//THIS IS FOR THE OPTION MENUE THAT HAVE BEEN STORED TO APPEAR ON LOAD
+//New item appear on load
 window.onload = function () {
   if (window.location.href.indexOf("plan_your_meal.html") > -1) {
     displayNewItems("option", newIngProtein, breakfastProtein);
@@ -585,13 +543,3 @@ window.onload = function () {
     // displayNewItems("input", newIngHerb, breakfastHerb);
   }
 };
-
-//THIS IS FOR THE BUTTON TO OPEN THE MODAL TO ADD NEW INGREDIENTS
-if (btnOpenModal) {
-  btnOpenModal.addEventListener("click", function () {
-    model.classList.remove("hidden");
-    topFunction(320);
-  });
-}
-
-//THIS IS TO CLOSE THE MODAL
