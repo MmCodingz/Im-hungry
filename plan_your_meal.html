@@ -26,14 +26,9 @@
       </p>
     </header>
     <main>
-      <div class="container seven">
-        <div class="modal_question hidden">
-          <p>Would you like to add another breakfast?</p>
-          <button id="yes">yes</button>
-          <button id="no">no</button>
-        </div>
-
-        <div class="modal hidden">
+      <div class="container">
+        <!-- MODAL -->
+        <div class="modal">
           <div class="modal_header">
             <p class="close_modal">X</p>
 
@@ -44,12 +39,9 @@
               <label for="new_ingredient">Enter your ingredient</label>
               <input type="text" id="new_ingredient" placeholder="ingredient" />
             </div>
-            <div class="modal_nameForGroc">
-              <label for="modal_name">Enter Item name for grocery List</label>
-              <input type="text" id="modal_name" placeholder="Item Name" />
-            </div>
+
             <div class="motal_cat">
-              <label for="categorie">categorie</label>
+              <label for="categorie">Categorie</label>
               <select name="categorie" id="categorie">
                 <option value="protein">protein</option>
                 <option value="grain">grain</option>
@@ -65,22 +57,28 @@
             <button class="done">Done</button>
           </div>
         </div>
+        <!-- MAIN PAGE -->
         <div class="meal_planing">
           <div class="flex name_date">
             <div class="name_date">
               <div class="date">
-                <form action="">
-                  <label for="date">Day</label>
-                  <input id="date" placeholder="Day" type="text" />
-                </form>
+                <label for="date">Day</label>
+                <select name="date" id="date">
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday">Saturday</option>
+                  <option value="Sunday">Sunday</option>
+                </select>
                 <p class="date_warning warning hidden">A day most be entered</p>
               </div>
 
               <div class="nameOfGuess">
-                <form action="">
-                  <label for="name1">Name</label>
-                  <input id="name1" placeholder="Name" type="text" />
-                </form>
+                <label for="name1">Name</label>
+                <input id="name1" placeholder="Name" type="text" />
+
                 <p class="name_warning warning hidden">
                   A name most be entered
                 </p>
@@ -189,13 +187,13 @@
                 <li>
                   <label for="ketchup">ketchup</label>
                   <input
-                    style="position: relative"
                     type="checkbox"
                     name="condiments"
                     value="ketchup"
                     id="ketchup"
                   />
                 </li>
+
                 <li>
                   <label for="mayo">mayo</label>
                   <input

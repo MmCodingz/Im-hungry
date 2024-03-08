@@ -1,4 +1,4 @@
-//ANCHOR - MEAL PLAN
+//ANCHOR - JS FOR PLAN YOUR MEAL
 // GLOBAL VARIABLE
 const date = document.getElementById("date");
 const client = document.getElementById("name");
@@ -49,30 +49,28 @@ const disable = function (on_off) {
 //No name and no date
 const warning = function () {
   const noName = document.querySelector(".name_warning ");
-  const noDate = document.querySelector(".date_warning");
-  let nameAndDate = true;
+
+  let noNameEntered = false;
   if (name1.value === "") {
     noName.classList.remove("hidden");
-    nameAndDate = false;
+    noNameEntered = true;
   } else {
     noName.classList.add("hidden");
+    noNameEntered = false;
   }
-  if (date.value === "") {
-    noDate.classList.remove("hidden");
-    nameAndDate = false;
-  } else {
-    noDate.classList.add(".hidden");
-  }
-  if (nameAndDate === true) {
+
+  if (noNameEntered === false) {
     disable(true);
     addPlanToGrocery();
-    // addCheckboxItems();
+    addCheckboxItems();
     createDomElementBreakfast();
     resetMealOption();
+    document.querySelector(".lunch").classList.remove("hidden");
+    btnBreakfast.classList.add("hidden");
   }
 };
 
-//SECTION - GROCERYLIST REALATED CODE
+//SECTION - GROCERYLIST RELATED CODE
 
 //Adding item to the grocery list page
 if (list) {
@@ -302,8 +300,6 @@ if (btnBreakfast) {
     storingItemInGroceryListObj();
     topFunction(200);
     warning();
-    document.querySelector(".lunch").classList.remove("hidden");
-    btnBreakfast.classList.add("hidden");
   });
 }
 //btn add lunch
@@ -397,13 +393,10 @@ if (modalDoneBtn) {
       displayNewItemsAfterDoneBtn("option", newIngBev, breakfastBeverage);
     }
     if (catOfNewIngredient.value === "condiment") {
+      const pickone = document.getElementById("condiment");
       newIngCondiment.push(nameOfNewIngredient.value);
       localStorage.setItem("newIngCondiment", JSON.stringify(newIngCondiment));
-      displayNewItemsAfterDoneBtn(
-        "input",
-        newIngCondiment,
-        breakfastCondiments
-      );
+      displayNewItemsAfterDoneBtn("input", newIngCondiment, pickone);
     }
   });
 }
@@ -470,23 +463,25 @@ const displayNewItems = function (element, ing, categorie) {
 
       // Assigning the attributes to created checkbox
       checkbox.type = "checkbox";
-      checkbox.name = ing[i];
+      checkbox.name = "condiments";
       checkbox.value = ing[i];
       checkbox.id = ing[i];
 
       // creating label for checkbox
-      let label = document.createElement("label");
+      let list = document.createElement("li");
 
       // assigning attributes for the created label tag
-      label.htmlFor = ing[i];
+      list.htmlFor = ing[i];
+      list.classList.add("list");
 
       // appending the created text to
       // the created label tag
-      label.appendChild(document.createTextNode(ing[i]));
+      list.appendChild(document.createTextNode(ing[i]));
 
       // appending the checkbox and label to div
-      categorie.appendChild(label);
-      categorie.appendChild(checkbox);
+
+      categorie.appendChild(list);
+      list.appendChild(checkbox);
     }
   } else {
     for (let i = 0; i < ing.length; i++) {
@@ -504,23 +499,22 @@ const displayNewItemsAfterDoneBtn = function (element, ing, categorie) {
 
     // Assigning the attributes to created checkbox
     checkbox.type = "checkbox";
-    checkbox.name = ing[ing.length - 1];
+    checkbox.name = "condiments";
     checkbox.value = ing[ing.length - 1];
     checkbox.id = ing[ing.length - 1];
 
     // creating label for checkbox
-    let label = document.createElement("label");
-
+    let list = document.createElement("li");
+    // let list = document.createElement("li");
     // assigning attributes for the created label tag
-    label.htmlFor = ing[ing.length - 1];
+    list.htmlFor = ing[ing.length - 1];
 
     // appending the created text to
     // the created label tag
-    label.appendChild(document.createTextNode(ing[ing.length - 1]));
-
-    // appending the checkbox and label to div
-    categorie.appendChild(label);
-    categorie.appendChild(checkbox);
+    list.appendChild(document.createTextNode(ing[ing.length - 1]));
+    list.classList.add("list");
+    categorie.appendChild(list);
+    list.appendChild(checkbox);
   } else {
     let option = document.createElement(element);
     option.text = ing[ing.length - 1];

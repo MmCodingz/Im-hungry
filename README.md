@@ -3,15 +3,15 @@
 <!-- A form is meant to be a single container for a collection of inputs rather than multiple tiny forms.
 
 A form is usually used when you want to send the input values to a server, in your case, you could build the whole page without a form element and then use your event listener on the submit button to process the form data -->
+<!--
+    <!-- Plan Your Meals Page
+    (Code organization) Your page is split into sections, and it would be great to organize your code to match them! --> -->
 
-    Plan Your Meals Page
-    (Code organization) Your page is split into sections, and it would be great to organize your code to match them!
+<!-- (Design) Your day selection could be a date input OR a select dropdown with days of the week as options -->
 
-(Design) Your day selection could be a date input OR a select dropdown with days of the week as options
+<!-- I got locked into an error state after my name was empty, I can't see in the code how you could ever not be locked! -->
 
-I got locked into an error state after my name was empty, I can't see in the code how you could ever not be locked!
-
-I can be easier to set your nameAndDate to false at the beginning and then check that both values are what you need to get the full validation of that section. Starting with true can make it difficult to write the checks you need!
+<!-- I can be easier to set your nameAndDate to false at the beginning and then check that both values are what you need to get the full validation of that section. Starting with true can make it difficult to write the checks you need! -->
 
 When I click Add another, I lose track of what I already added. Maybe it could be displayed on the page somewhere what the meal currently has?
 
