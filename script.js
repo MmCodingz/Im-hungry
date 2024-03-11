@@ -6,13 +6,11 @@ const btnBreakfast = document.querySelector(".btn_add_plan");
 const homemadeBreakfast = document.getElementById("homemade");
 const breakfastProtein = document.getElementById("protein");
 const breakfastGrain = document.getElementById("grain");
-const breakfastFruit = document.getElementById("fruits");
-const breakfastVeggie = document.getElementById("veggies");
+const breakfastFruit = document.getElementById("fruit");
+const breakfastVeggie = document.getElementById("veggie");
 const breakfastBeverage = document.getElementById("beverage");
 const breakfastCondiments = document.getElementById("condiment");
-const breakfastHerb = document.getElementById("herbs");
 
-const breakfastSpice = document.getElementById("spices");
 const breakfastDairy = document.getElementById("dairy");
 const list = document.querySelector(".list");
 let groceryListStorage;
@@ -31,19 +29,26 @@ const lunch = document.createElement("p");
 const supper = document.createElement("p");
 const btnLunch = document.querySelector(".lunch");
 const btnSupper = document.querySelector(".supper");
+let newSelect;
+let newtable;
 //
 //
 //SECTION - NAME AND DATE RELATED CODE:
 
 //Desable name and date inputfield
-const disable = function (on_off) {
-  if (on_off === true) {
-    document.getElementById("name1").disabled = true;
-    document.getElementById("date").disabled = true;
-  } else {
-    document.getElementById("name1").disabled = false;
-    document.getElementById("date").disabled = false;
-  }
+const disableNameAndDate = function (isDisabled) {
+  document.getElementById("name1").disabled = isDisabled;
+  document.getElementById("date").disabled = isDisabled;
+};
+// adding all ement
+const PushAllElement = function () {
+  addNewSelectToGroList("homemade", grocerieList.homemade);
+  addNewSelectToGroList("protein", grocerieList.protein);
+  addNewSelectToGroList("grain", grocerieList.grain);
+  addNewSelectToGroList("dairy", grocerieList.dairy);
+  addNewSelectToGroList("fruit", grocerieList.fruit);
+  addNewSelectToGroList("veggie", grocerieList.veggie);
+  addNewSelectToGroList("beverage", grocerieList.beverage);
 };
 
 //No name and no date
@@ -60,11 +65,12 @@ const warning = function () {
   }
 
   if (noNameEntered === false) {
-    disable(true);
-    addPlanToGrocery();
-    addCheckboxItems();
+    disableNameAndDate(true);
+    PushAllElement();
     createDomElementBreakfast();
+    storingItemInGroceryListObj();
     resetMealOption();
+    //changing the button to lunch
     document.querySelector(".lunch").classList.remove("hidden");
     btnBreakfast.classList.add("hidden");
   }
@@ -78,8 +84,7 @@ if (list) {
   document.getElementById("homemade_list").innerHTML =
     groceryListStorage.homemade;
   document.getElementById("fruit_list").innerHTML = groceryListStorage.fruit;
-  document.getElementById("list_Veggies").innerHTML =
-    groceryListStorage.veggies;
+  document.getElementById("list_Veggie").innerHTML = groceryListStorage.veggie;
   // adding eggs instead on 'scrambled eggs
 
   let proteinArr = groceryListStorage.protein;
@@ -112,7 +117,7 @@ if (list) {
 let grocerieList = {
   homemade: [],
   fruit: [],
-  veggies: [],
+  veggie: [],
   protein: [],
   grain: [],
   dairy: [],
@@ -122,6 +127,7 @@ let grocerieList = {
   spices: [],
   beverage: [],
 };
+
 //Breakfast category array
 let grocerieListArr = [
   grocerieList.homemade,
@@ -129,25 +135,20 @@ let grocerieListArr = [
   grocerieList.grain,
   grocerieList.dairy,
   grocerieList.fruit,
-  grocerieList.veggies,
+  grocerieList.veggie,
   grocerieList.beverage,
   grocerieList.condiments,
   grocerieList.spices,
   grocerieList.herbs,
 ];
-//Function to push selected item to GL object
-const addPlanToGrocery = function () {
-  grocerieList.homemade.push(homemadeBreakfast.value);
-  console.log(grocerieList.homemade);
-  console.log(grocerieList);
-  grocerieList.protein.push(breakfastProtein.value);
-  grocerieList.grain.push(breakfastGrain.value);
-  grocerieList.fruit.push(breakfastFruit.value);
-  grocerieList.veggies.push(breakfastVeggie.value);
-  grocerieList.dairy.push(breakfastDairy.value);
 
-  grocerieList.beverage.push(breakfastBeverage.value);
-  addCheckboxItems();
+//Pushin all Select to groceryList
+const addNewSelectToGroList = function (elemntClassName, categorie) {
+  const addedSelects = document.getElementsByName(elemntClassName);
+  for (let i = 0; i < addedSelects.length; i++) {
+    categorie.push(addedSelects[i].value);
+    console.log(addedSelects[i]);
+  }
 };
 
 //SECTION -FUNCTION OF THE PAGE
@@ -161,11 +162,12 @@ const resetMealOption = function () {
   topFunction(220);
   homemade.selectedIndex = 0;
   protein.selectedIndex = 0;
-  fruits.selectedIndex = 0;
-  veggies.selectedIndex = 0;
+  fruit.selectedIndex = 0;
+  veggie.selectedIndex = 0;
   grain.selectedIndex = 0;
   dairy.selectedIndex = 0;
   beverage.selectedIndex = 0;
+
   const condiment = document.getElementsByName("condiments");
   for (let i = 0; i < condiment.length; i++) {
     if (condiment[i].checked === true) {
@@ -182,33 +184,19 @@ const resetMealOption = function () {
 //Value of checkbox
 const addCheckboxItems = function () {
   const condiments = document.getElementsByName("condiments");
-  const spices = document.getElementsByName("spices");
-  const herbs = document.getElementsByName("herbs");
+
   if (condiments)
     for (let i = 0; i < condiments.length; i++) {
       if (condiments[i].checked === true) {
         grocerieList.condiments.push(condiments[i].value);
       }
     }
-  if (spices)
-    for (let i = 0; i < spices.length; i++) {
-      if (spices[i].checked === true) {
-        grocerieList.spices.push(spices[i].value);
-        console.log(spices[i]);
-      }
-    }
-  if (herbs) {
-    for (let i = 0; i < herbs.length; i++) {
-      if (herbs[i].checked === true) {
-        grocerieList.herbs.push(herbs[i].value);
-      }
-    }
-  }
 };
 //Display menue
 const displayMeal = function (...items) {
   const itemArr = items.flat(2);
-  const justItems = itemArr.filter((el) => el !== "none");
+  const justItems = itemArr.filter((el) => el !== "None");
+
   const itemStr = justItems + "";
   const finishedItemStr = itemStr.replaceAll(",", " / ");
 
@@ -217,7 +205,6 @@ const displayMeal = function (...items) {
 //Create Dom element for meal
 const createDomElementBreakfast = function () {
   let food = displayMeal(grocerieListArr);
-  console.log(grocerieListArr);
 
   dayOfWeek.classList.add("day_of_week");
 
@@ -255,57 +242,50 @@ const createDomElementSupper = function () {
 };
 
 //SECTION - BUTTONS
-//Add more item
-const addMoreItems = function () {
-  if (btnAddMore) {
+//Adding New Select When Clicking on Addmore BTN
+const createSelectOnClick = function (selectName, nameOfClass, nameOfDiv) {
+  {
     for (let i = 0; i < btnAddMore.length; i++) {
       btnAddMore[i].addEventListener("click", function () {
-        if (btnAddMore[i].className.includes("homemade")) {
-          grocerieList.homemade.push(homemadeBreakfast.value);
-          homemade.selectedIndex = 0;
-
-          // displayMealPlan();
-        }
-        if (btnAddMore[i].className.includes("protein")) {
-          grocerieList.protein.push(breakfastProtein.value);
-          protein.selectedIndex = 0;
-        }
-        if (btnAddMore[i].className.includes("grain")) {
-          grocerieList.grain.push(breakfastGrain.value);
-          grain.selectedIndex = 0;
-        }
-        if (btnAddMore[i].className.includes("dairy")) {
-          grocerieList.dairy.push(breakfastDairy.value);
-          dairy.selectedIndex = 0;
-        }
-        if (btnAddMore[i].className.includes("fruit")) {
-          grocerieList.fruit.push(breakfastFruit.value);
-          fruits.selectedIndex = 0;
-        }
-        if (btnAddMore[i].className.includes("veggies")) {
-          grocerieList.veggies.push(breakfastVeggie.value);
-          veggies.selectedIndex = 0;
-        }
-        if (btnAddMore[i].className.includes("beverage")) {
-          grocerieList.beverage.push(breakfastBeverage.value);
+        if (btnAddMore[i].className.includes(selectName)) {
+          createNewSelectElement(selectName, nameOfClass, nameOfDiv);
         }
       });
     }
   }
 };
-addMoreItems();
+createSelectOnClick("homemade", ".homemade", homemadeBreakfast);
+createSelectOnClick("protein", ".protein", breakfastProtein);
+createSelectOnClick("grain", ".grain", breakfastGrain);
+createSelectOnClick("dairy", ".dairy", breakfastDairy);
+createSelectOnClick("fruit", ".fruit", breakfastFruit);
+createSelectOnClick("veggie", ".veggie", breakfastVeggie);
+createSelectOnClick("beverage", ".beverage", breakfastBeverage);
+// creating a new Select
+const createNewSelectElement = function (name, nameOfClass, nameOfDiv) {
+  newSelect = document.createElement("select");
+  newSelect.name = name;
+
+  newtable = document.createElement("table");
+  newSelect.innerHTML = nameOfDiv.innerHTML;
+  newSelect.classList.add("newSelect");
+  const newDiv = document.querySelector(nameOfClass);
+
+  newtable.appendChild(newSelect);
+  newDiv.appendChild(newtable);
+};
+
 //btn add breakfast
 if (btnBreakfast) {
   btnBreakfast.addEventListener("click", function () {
-    storingItemInGroceryListObj();
     topFunction(200);
     warning();
   });
 }
-//btn add lunch
+// btn add lunch
 if (btnLunch) {
   btnLunch.addEventListener("click", function () {
-    addPlanToGrocery();
+    PushAllElement();
     createDomElementLunch();
     storingItemInGroceryListObj();
     topFunction(200);
@@ -317,13 +297,11 @@ if (btnLunch) {
 //btn add supper
 if (btnSupper) {
   btnSupper.addEventListener("click", function () {
-    addPlanToGrocery();
+    PushAllElement();
     createDomElementSupper();
     storingItemInGroceryListObj();
     topFunction(200);
-
     btnSupper.classList.add("hidden");
-    // resetMealOption();
   });
 }
 
@@ -402,11 +380,10 @@ if (modalDoneBtn) {
 }
 
 //Local storage of all new Ing
+//FIXME -
 const localStorageContentProtein = localStorage.getItem("newIngProtein");
-let newIngProtein;
-if (localStorageContentProtein === null) {
-  newIngProtein = [];
-} else {
+let newIngProtein = [];
+if (localStorageContentProtein !== null) {
   newIngProtein = JSON.parse(localStorageContentProtein);
 }
 const localStorageContentGrain = localStorage.getItem("newIngGrain");

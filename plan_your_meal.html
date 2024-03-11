@@ -28,7 +28,7 @@
     <main>
       <div class="container">
         <!-- MODAL -->
-        <div class="modal">
+        <div class="modal hidden">
           <div class="modal_header">
             <p class="close_modal">X</p>
 
@@ -86,99 +86,117 @@
             </div>
           </div>
           <h2>Breakfast</h2>
-          <div class="flex homemade">
-            <div class="meal">
-              <label for="homemade">Homemade</label>
-              <select name="homemade" id="homemade">
-                <option value="none">none</option>
-                <option value="pancake">Pancake</option>
-                <option value="muffin">muffin</option>
-              </select>
-            </div>
-            <div class="addmore">
-              <button class="add_more homemade">Add Another?</button>
-            </div>
-          </div>
-          <div class="flex protein">
-            <div class="meal">
-              <label for="protein">Protein</label>
-              <select name="protein" id="protein">
-                <option value="none">none</option>
-                <option value="Scrambled Eggs">Scrambled Eggs</option>
-                <option value="Eggs Dip Dip">Eggs Dip Dip</option>
-              </select>
-            </div>
-            <div class="addmore">
-              <button class="add_more protein">Add Another?</button>
-            </div>
-          </div>
-          <div class="flex grain">
-            <div class="meal">
-              <label for="grain">Grain</label>
-              <select name="grain" id="grain">
-                <option value="none">none</option>
-                <option value="Scrambled Eggs">Scrambled Eggs</option>
-                <option value="Eggs Dip Dip">Eggs Dip Dip</option>
-              </select>
-            </div>
-            <div class="addmore grain">
-              <button class="add_more">Add Another?</button>
-            </div>
-          </div>
-          <div class="flex dairy">
-            <div class="meal">
-              <label for="dairy">Dairy</label>
-              <select name="dairy" id="dairy">
-                <option value="none">none</option>
-                <option value="Yougurt ">Yougurt</option>
-                <option value="Chesse">Chesse</option>
-              </select>
-            </div>
-            <div class="addmore">
-              <button class="add_more dairy">Add Another?</button>
-            </div>
-          </div>
-          <div class="flex fruits">
-            <div class="meal">
-              <label for="fruits">Fruits</label>
-              <select name="fruits" id="fruits">
-                <option value="none">none</option>
-                <option value="Apple">Apple</option>
-                <option value="Banana">Banana</option>
-              </select>
-            </div>
-            <div class="addmore">
-              <button class="add_more fruit">Add Another?</button>
-            </div>
+
+          <div class="homemade">
+            <table>
+              <tr class="meal homemade">
+                <td>Homemade</td>
+                <td>
+                  <select name="homemade" id="homemade">
+                    <option value="None">None</option>
+                    <option value="pancake">Pancake</option>
+                    <option value="muffin">muffin</option>
+                  </select>
+                  <p class="empty_Select_Warning hidden">
+                    You must select an item
+                  </p>
+                </td>
+                <td><button class="add_more homemade">Add Another?</button></td>
+              </tr>
+            </table>
           </div>
 
-          <div class="flex veggies">
-            <div class="meal">
-              <label for="veggies">Veggies</label>
-              <select name="veggies" id="veggies">
-                <option value="none">none</option>
-                <option value="Cucumbers">Cucumbers</option>
-                <option value="Carrotts">Carrotts</option>
-              </select>
-            </div>
-            <div class="addmore">
-              <button class="add_more veggies">Add Another?</button>
-            </div>
+          <div class="protein">
+            <table>
+              <tr class="meal protein">
+                <td>Protein</td>
+                <td>
+                  <select name="protein" id="protein">
+                    <option value="None">None</option>
+                    <option value="ChickPeas">ChickPeas</option>
+                    <option value="Tofu">Tofu</option>
+                  </select>
+                </td>
+                <td><button class="add_more protein">Add Another?</button></td>
+              </tr>
+            </table>
+          </div>
+          <div class="grain">
+            <table>
+              <tr class="meal grain">
+                <td>Grain</td>
+                <td>
+                  <select name="grain" id="grain">
+                    <option value="None">None</option>
+                    <option value="Wrap">Wrap</option>
+                    <option value="Pasta">Pasta</option>
+                  </select>
+                </td>
+                <td><button class="add_more grain">Add Another?</button></td>
+              </tr>
+            </table>
+          </div>
+          <div class="dairy">
+            <table>
+              <tr class="meal dairy">
+                <td>Dairy</td>
+                <td>
+                  <select name="dairy" id="dairy">
+                    <option value="None">None</option>
+                    <option value="Chesse">Chesse</option>
+                    <option value="Yogourt">Yogourt</option>
+                  </select>
+                </td>
+                <td><button class="add_more dairy">Add Another?</button></td>
+              </tr>
+            </table>
+          </div>
+          <div class="fruit">
+            <table>
+              <tr class="meal fruit">
+                <td>Fruit</td>
+                <td>
+                  <select name="fruit" id="fruit">
+                    <option value="None">None</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Water Melon">Water Melon</option>
+                  </select>
+                </td>
+                <td><button class="add_more fruit">Add Another?</button></td>
+              </tr>
+            </table>
+          </div>
+          <div class="veggie">
+            <table>
+              <tr class="meal veggie">
+                <td>Veggies</td>
+                <td>
+                  <select name="veggie" id="veggie">
+                    <option value="None">None</option>
+                    <option value="Cucumber">Cucumber</option>
+                    <option value="Carrot">Carrot</option>
+                  </select>
+                </td>
+                <td><button class="add_more veggie">Add Another?</button></td>
+              </tr>
+            </table>
+          </div>
+          <div class="beverage">
+            <table>
+              <tr class="meal beverage">
+                <td>Beverage</td>
+                <td>
+                  <select name="beverage" id="beverage">
+                    <option value="None">None</option>
+                    <option value="Coffee">Coffee</option>
+                    <option value="Juice">Juice</option>
+                  </select>
+                </td>
+                <td><button class="add_more beverage">Add Another?</button></td>
+              </tr>
+            </table>
           </div>
 
-          <div class="flex beverage">
-            <div class="meal">
-              <label for="beverage">beverage</label>
-              <select name="beverage" id="beverage">
-                <option value="none">none</option>
-                <option value="Apple juice">Apple juice</option>
-                <option value="coffee">coffee</option>
-              </select>
-            </div>
-            <div class="addmore">
-              <button class="add_more beverage">Add Another?</button>
-            </div>
-          </div>
           <div class="flex condiment">
             <div class="meal">
               <h3 style="font-size: 15; font-weight: 300">Condiments</h3>
