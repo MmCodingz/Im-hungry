@@ -29,50 +29,24 @@ const lunch = document.createElement("p");
 const supper = document.createElement("p");
 const btnLunch = document.querySelector(".lunch");
 const btnSupper = document.querySelector(".supper");
+let isName = false;
 let newSelect;
 let newtable;
 //
 //
-//SECTION - NAME AND DATE RELATED CODE:
-
-//Desable name and date inputfield
+//SECTION - DISABLE INOUT FIELD AND NO NAME WARNING
 const disableNameAndDate = function (isDisabled) {
   document.getElementById("name1").disabled = isDisabled;
   document.getElementById("date").disabled = isDisabled;
 };
-// adding all ement
-const PushAllElement = function () {
-  addNewSelectToGroList("homemade", grocerieList.homemade);
-  addNewSelectToGroList("protein", grocerieList.protein);
-  addNewSelectToGroList("grain", grocerieList.grain);
-  addNewSelectToGroList("dairy", grocerieList.dairy);
-  addNewSelectToGroList("fruit", grocerieList.fruit);
-  addNewSelectToGroList("veggie", grocerieList.veggie);
-  addNewSelectToGroList("beverage", grocerieList.beverage);
-};
-
-//No name and no date
 const warning = function () {
   const noName = document.querySelector(".name_warning ");
-
-  let noNameEntered = false;
   if (name1.value === "") {
     noName.classList.remove("hidden");
-    noNameEntered = true;
   } else {
     noName.classList.add("hidden");
-    noNameEntered = false;
-  }
-
-  if (noNameEntered === false) {
+    isName = true;
     disableNameAndDate(true);
-    PushAllElement();
-    createDomElementBreakfast();
-    storingItemInGroceryListObj();
-    resetMealOption();
-    //changing the button to lunch
-    document.querySelector(".lunch").classList.remove("hidden");
-    btnBreakfast.classList.add("hidden");
   }
 };
 
@@ -113,7 +87,8 @@ if (list) {
   document.getElementById("list_drinks").innerHTML =
     groceryListStorage.beverage;
 }
-//grocery Object
+
+//grocerieListObject
 let grocerieList = {
   homemade: [],
   fruit: [],
@@ -127,8 +102,7 @@ let grocerieList = {
   spices: [],
   beverage: [],
 };
-
-//Breakfast category array
+//grocerieList element arr
 let grocerieListArr = [
   grocerieList.homemade,
   grocerieList.protein,
@@ -142,16 +116,35 @@ let grocerieListArr = [
   grocerieList.herbs,
 ];
 
-//Pushin all Select to groceryList
+//!SECTION PUSHING ALL SELECT AND CHECKBOX TO GROCERYLIST
+const PushAllElement = function () {
+  addNewSelectToGroList("homemade", grocerieList.homemade);
+  addNewSelectToGroList("protein", grocerieList.protein);
+  addNewSelectToGroList("grain", grocerieList.grain);
+  addNewSelectToGroList("dairy", grocerieList.dairy);
+  addNewSelectToGroList("fruit", grocerieList.fruit);
+  addNewSelectToGroList("veggie", grocerieList.veggie);
+  addNewSelectToGroList("beverage", grocerieList.beverage);
+  addCheckboxItems();
+};
 const addNewSelectToGroList = function (elemntClassName, categorie) {
   const addedSelects = document.getElementsByName(elemntClassName);
   for (let i = 0; i < addedSelects.length; i++) {
     categorie.push(addedSelects[i].value);
-    console.log(addedSelects[i]);
   }
 };
+const addCheckboxItems = function () {
+  const condiments = document.getElementsByName("condiments");
+  console.log(condiments);
+  if (condiments)
+    for (let i = 0; i < condiments.length; i++) {
+      if (condiments[i].checked === true) {
+        grocerieList.condiments.push(condiments[i].value);
+      }
+    }
+};
 
-//SECTION -FUNCTION OF THE PAGE
+//SECTION -Reusable functions
 
 //Scroll up the page function
 function topFunction(number) {
@@ -178,22 +171,19 @@ const resetMealOption = function () {
   grocerieListArr.map((el) => (el.length = 0));
   console.log(grocerieList.condiments);
 };
+//function after client is done with a meal selection
+const functionForEachMeal = function () {
+  topFunction(200);
+  PushAllElement();
+  createDomElementBreakfast();
+  storingItemInGroceryListObj();
+  resetMealOption();
+};
 
 //SECTION - FUNCTIONS RELATED TO THE DISPLAY OF THE PAGE
 
-//Value of checkbox
-const addCheckboxItems = function () {
-  const condiments = document.getElementsByName("condiments");
-
-  if (condiments)
-    for (let i = 0; i < condiments.length; i++) {
-      if (condiments[i].checked === true) {
-        grocerieList.condiments.push(condiments[i].value);
-      }
-    }
-};
-//Display menue
-const displayMeal = function (...items) {
+//Take groceryList array and filter none to return appropriate string to display
+const transformFoodItemsToStr = function (...items) {
   const itemArr = items.flat(2);
   const justItems = itemArr.filter((el) => el !== "None");
 
@@ -202,9 +192,9 @@ const displayMeal = function (...items) {
 
   return finishedItemStr;
 };
-//Create Dom element for meal
+//Create Dom element for meals
 const createDomElementBreakfast = function () {
-  let food = displayMeal(grocerieListArr);
+  let food = transformFoodItemsToStr(grocerieListArr);
 
   dayOfWeek.classList.add("day_of_week");
 
@@ -221,7 +211,7 @@ const createDomElementBreakfast = function () {
   userNameInput.appendChild(breakfast);
 };
 const createDomElementLunch = function () {
-  let food = displayMeal(grocerieListArr);
+  let food = transformFoodItemsToStr(grocerieListArr);
   console.log(food);
 
   lunch.classList.add("font_food");
@@ -231,7 +221,7 @@ const createDomElementLunch = function () {
   breakfast.appendChild(lunch);
 };
 const createDomElementSupper = function () {
-  let food = displayMeal(grocerieListArr);
+  let food = transformFoodItemsToStr(grocerieListArr);
   console.log(food);
 
   supper.classList.add("font_food");
@@ -240,15 +230,13 @@ const createDomElementSupper = function () {
 
   lunch.appendChild(supper);
 };
-
-//SECTION - BUTTONS
 //Adding New Select When Clicking on Addmore BTN
 const createSelectOnClick = function (selectName, nameOfClass, nameOfDiv) {
   {
     for (let i = 0; i < btnAddMore.length; i++) {
       btnAddMore[i].addEventListener("click", function () {
         if (btnAddMore[i].className.includes(selectName)) {
-          createNewSelectElement(selectName, nameOfClass, nameOfDiv);
+          createDomElementSelect(selectName, nameOfClass, nameOfDiv);
         }
       });
     }
@@ -262,7 +250,7 @@ createSelectOnClick("fruit", ".fruit", breakfastFruit);
 createSelectOnClick("veggie", ".veggie", breakfastVeggie);
 createSelectOnClick("beverage", ".beverage", breakfastBeverage);
 // creating a new Select
-const createNewSelectElement = function (name, nameOfClass, nameOfDiv) {
+const createDomElementSelect = function (name, nameOfClass, nameOfDiv) {
   newSelect = document.createElement("select");
   newSelect.name = name;
 
@@ -274,36 +262,33 @@ const createNewSelectElement = function (name, nameOfClass, nameOfDiv) {
   newtable.appendChild(newSelect);
   newDiv.appendChild(newtable);
 };
+//
+//!SECTION MEAL BTN
 
 //btn add breakfast
-if (btnBreakfast) {
-  btnBreakfast.addEventListener("click", function () {
-    topFunction(200);
-    warning();
-  });
-}
+btnBreakfast.addEventListener("click", function () {
+  warning();
+  console.log(isName);
+  if (isName) {
+    functionForEachMeal();
+    //changing the button to lunch
+    document.querySelector(".lunch").classList.remove("hidden");
+    btnBreakfast.classList.add("hidden");
+  }
+});
+
 // btn add lunch
-if (btnLunch) {
-  btnLunch.addEventListener("click", function () {
-    PushAllElement();
-    createDomElementLunch();
-    storingItemInGroceryListObj();
-    topFunction(200);
-    resetMealOption();
-    document.querySelector(".supper").classList.remove("hidden");
-    btnLunch.classList.add("hidden");
-  });
-}
+btnLunch.addEventListener("click", function () {
+  functionForEachMeal();
+  document.querySelector(".supper").classList.remove("hidden");
+  btnLunch.classList.add("hidden");
+});
+
 //btn add supper
-if (btnSupper) {
-  btnSupper.addEventListener("click", function () {
-    PushAllElement();
-    createDomElementSupper();
-    storingItemInGroceryListObj();
-    topFunction(200);
-    btnSupper.classList.add("hidden");
-  });
-}
+btnSupper.addEventListener("click", function () {
+  functionForEachMeal();
+  btnSupper.classList.add("hidden");
+});
 
 //SECTION - LOCAL STORAGE
 // Storing groceryList object to Local Storage
