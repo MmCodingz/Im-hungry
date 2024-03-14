@@ -154,7 +154,7 @@ function topFunction(number) {
 //Reset meal option
 const resetMealOption = function () {
   topFunction(220);
-
+  //set the select option back to 'none'
   homemade.selectedIndex = 0;
   protein.selectedIndex = 0;
   fruit.selectedIndex = 0;
@@ -162,7 +162,12 @@ const resetMealOption = function () {
   grain.selectedIndex = 0;
   dairy.selectedIndex = 0;
   beverage.selectedIndex = 0;
-
+  //Remove client created select
+  const selectToDelete = document.querySelectorAll(".newSelect");
+  const table = document.querySelectorAll(".createTable");
+  table.forEach((el) => el.remove());
+  selectToDelete.forEach((el) => el.remove());
+  //uncheck the condiment
   const condiment = document.getElementsByName("condiments");
   for (let i = 0; i < condiment.length; i++) {
     if (condiment[i].checked === true) {
@@ -172,16 +177,11 @@ const resetMealOption = function () {
 
   grocerieListArr.map((el) => (el.length = 0));
 };
-// function to remove att select
-const removeChild = function () {
-  const selectToDelete = document.querySelectorAll(".newSelect");
-  selectToDelete.forEach((el) => el.remove());
-};
+
 //function after client is done with a meal selection
 const functionForEachMeal = function () {
   topFunction(200);
   PushAllElement();
-  removeChild();
   createDomElementBreakfast();
   storingItemInGroceryListObj();
   resetMealOption();
@@ -267,6 +267,7 @@ const createDomElementSelect = function (name, nameOfClass, nameOfDiv) {
   newSelect.name = name;
 
   newtable = document.createElement("table");
+  newtable.classList.add("createTable");
   newSelect.innerHTML = nameOfDiv.innerHTML;
   newSelect.classList.add("newSelect");
   const newDiv = document.querySelector(nameOfClass);
