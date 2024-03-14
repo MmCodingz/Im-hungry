@@ -182,9 +182,8 @@ const resetMealOption = function () {
 const functionForEachMeal = function () {
   topFunction(200);
   PushAllElement();
-  createDomElementBreakfast();
   storingItemInGroceryListObj();
-  resetMealOption();
+  // resetMealOption();
 };
 
 //SECTION - FUNCTIONS RELATED TO THE DISPLAY OF THE PAGE
@@ -224,7 +223,6 @@ const createDomElementBreakfast = function () {
 };
 const createDomElementLunch = function () {
   let food = transformFoodItemsToStr(grocerieListArr);
-  console.log(food);
 
   lunch.classList.add("font_food");
 
@@ -280,11 +278,13 @@ const createDomElementSelect = function (name, nameOfClass, nameOfDiv) {
 
 //btn add breakfast
 btnBreakfast.addEventListener("click", function () {
+  topFunction();
   warning();
 
   if (isName) {
     functionForEachMeal();
-
+    createDomElementBreakfast();
+    resetMealOption();
     //changing the button to lunch
     document.querySelector(".lunch").classList.remove("hidden");
     btnBreakfast.classList.add("hidden");
@@ -295,6 +295,8 @@ btnBreakfast.addEventListener("click", function () {
 // btn add lunch
 btnLunch.addEventListener("click", function () {
   functionForEachMeal();
+  createDomElementLunch();
+  resetMealOption();
   document.querySelector(".supper").classList.remove("hidden");
   btnLunch.classList.add("hidden");
   changeMealHeading("Supper");
@@ -303,6 +305,9 @@ btnLunch.addEventListener("click", function () {
 //btn add supper
 btnSupper.addEventListener("click", function () {
   functionForEachMeal();
+  createDomElementSupper();
+  resetMealOption();
+
   btnSupper.classList.add("hidden");
 });
 
