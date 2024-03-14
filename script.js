@@ -18,9 +18,9 @@ const btnOpenModal = document.getElementById("open_modal");
 const btncloseModal = document.querySelector(".close_modal");
 const model = document.querySelector(".modal");
 const btnAddMore = document.querySelectorAll(".add_more");
-const modalQuestion = document.querySelector(".modal_question");
-const btnYes = document.getElementById("yes");
-const btnNo = document.getElementById("no");
+// const modalQuestion = document.querySelector(".modal_question");
+const modalDoneBtn = document.querySelector(".done");
+
 const dayOfWeek = document.createElement("h4");
 const clientMealPlan = document.querySelector(".display_plan");
 const userNameInput = document.createElement("p");
@@ -29,6 +29,7 @@ const lunch = document.createElement("p");
 const supper = document.createElement("p");
 const btnLunch = document.querySelector(".lunch");
 const btnSupper = document.querySelector(".supper");
+
 let isName = false;
 let newSelect;
 let newtable;
@@ -135,7 +136,7 @@ const addNewSelectToGroList = function (elemntClassName, categorie) {
 };
 const addCheckboxItems = function () {
   const condiments = document.getElementsByName("condiments");
-  console.log(condiments);
+
   if (condiments)
     for (let i = 0; i < condiments.length; i++) {
       if (condiments[i].checked === true) {
@@ -144,7 +145,7 @@ const addCheckboxItems = function () {
     }
 };
 
-//SECTION -Reusable functions
+//SECTION -REUSABLE FUNCTION
 
 //Scroll up the page function
 function topFunction(number) {
@@ -153,6 +154,7 @@ function topFunction(number) {
 //Reset meal option
 const resetMealOption = function () {
   topFunction(220);
+
   homemade.selectedIndex = 0;
   protein.selectedIndex = 0;
   fruit.selectedIndex = 0;
@@ -169,18 +171,28 @@ const resetMealOption = function () {
   }
 
   grocerieListArr.map((el) => (el.length = 0));
-  console.log(grocerieList.condiments);
+};
+// function to remove att select
+const removeChild = function () {
+  const selectToDelete = document.querySelectorAll(".newSelect");
+  selectToDelete.forEach((el) => el.remove());
 };
 //function after client is done with a meal selection
 const functionForEachMeal = function () {
   topFunction(200);
   PushAllElement();
+  removeChild();
   createDomElementBreakfast();
   storingItemInGroceryListObj();
   resetMealOption();
 };
 
 //SECTION - FUNCTIONS RELATED TO THE DISPLAY OF THE PAGE
+//Change the meal  heading  to Lunch or supper
+const changeMealHeading = function (meal) {
+  const heading = document.querySelector(".meal_header");
+  heading.textContent = meal;
+};
 
 //Take groceryList array and filter none to return appropriate string to display
 const transformFoodItemsToStr = function (...items) {
@@ -268,12 +280,14 @@ const createDomElementSelect = function (name, nameOfClass, nameOfDiv) {
 //btn add breakfast
 btnBreakfast.addEventListener("click", function () {
   warning();
-  console.log(isName);
+
   if (isName) {
     functionForEachMeal();
+
     //changing the button to lunch
     document.querySelector(".lunch").classList.remove("hidden");
     btnBreakfast.classList.add("hidden");
+    changeMealHeading("Lunch");
   }
 });
 
@@ -282,6 +296,7 @@ btnLunch.addEventListener("click", function () {
   functionForEachMeal();
   document.querySelector(".supper").classList.remove("hidden");
   btnLunch.classList.add("hidden");
+  changeMealHeading("Supper");
 });
 
 //btn add supper
@@ -297,28 +312,7 @@ const storingItemInGroceryListObj = function () {
   localStorage.setItem("grocerieList", groceryListstorageStr);
 };
 
-///ANCHOR - /MODAL
-const modalDoneBtn = document.querySelector(".done");
-
-//SECTION - MODAL BUTTONS
-//Btn to open Modal to add new ingredients
-if (btnOpenModal) {
-  btnOpenModal.addEventListener("click", function () {
-    model.classList.remove("hidden");
-    topFunction(320);
-  });
-}
-// Btn X to close Modal
-if (btncloseModal) {
-  btncloseModal.addEventListener("click", function () {
-    model.classList.add("hidden");
-  });
-}
-
-//SECTION - MODAL STORAGE CODE
-
-//Adding new Ing to storage and displaying new ingredient on the option menue
-
+//Adding new Ing to storage and displaying new ingredient into their appropriate area
 if (modalDoneBtn) {
   modalDoneBtn.addEventListener("click", function () {
     model.classList.add("hidden");
@@ -363,97 +357,64 @@ if (modalDoneBtn) {
     }
   });
 }
+//Local storage of all client created new Ingredient
 
-//Local storage of all new Ing
-//FIXME -
 const localStorageContentProtein = localStorage.getItem("newIngProtein");
 let newIngProtein = [];
 if (localStorageContentProtein !== null) {
   newIngProtein = JSON.parse(localStorageContentProtein);
 }
 const localStorageContentGrain = localStorage.getItem("newIngGrain");
-let newIngGrain;
-if (localStorageContentGrain === null) {
-  newIngGrain = [];
-} else {
+let newIngGrain = [];
+if (localStorageContentGrain !== null) {
   newIngGrain = JSON.parse(localStorageContentGrain);
 }
 const localStorageContentDairy = localStorage.getItem("newIngDairy");
-let newIngDairy;
-if (localStorageContentDairy === null) {
-  newIngDairy = [];
-} else {
+let newIngDairy = [];
+if (localStorageContentDairy !== null) {
   newIngDairy = JSON.parse(localStorageContentDairy);
 }
 const localStorageContentFruit = localStorage.getItem("newIngFruit");
-let newIngFruit;
-if (localStorageContentFruit === null) {
-  newIngFruit = [];
-} else {
+let newIngFruit = [];
+if (localStorageContentFruit !== null) {
   newIngFruit = JSON.parse(localStorageContentFruit);
 }
 const localStorageContentVeggie = localStorage.getItem("newIngVeggie");
-let newIngVeggie;
-if (localStorageContentVeggie === null) {
-  newIngVeggie = [];
-} else {
+let newIngVeggie = [];
+if (localStorageContentVeggie !== null) {
   newIngVeggie = JSON.parse(localStorageContentVeggie);
 }
 const localStorageContentBev = localStorage.getItem("newIngBev");
-let newIngBev;
-if (localStorageContentBev === null) {
-  newIngBev = [];
-} else {
+let newIngBev = [];
+if (localStorageContentBev !== null) {
   newIngBev = JSON.parse(localStorageContentBev);
 }
+
 const localStorageContentCondiment = localStorage.getItem("newIngCondiment");
-let newIngCondiment;
-if (localStorageContentCondiment === null) {
-  newIngCondiment = [];
-} else {
+let newIngCondiment = [];
+if (localStorageContentCondiment !== null) {
   newIngCondiment = JSON.parse(localStorageContentCondiment);
-  grocerieList.condiments.push(newIngCondiment);
 }
 
-//SECTION - FUNCTION FOR DISPLAY NEW ITEM
+///ANCHOR - /MODAL
 
-//Display new Item to page
-const displayNewItems = function (element, ing, categorie) {
-  if (element === "input") {
-    for (let i = 0; i < ing.length; i++) {
-      let checkbox = document.createElement(element);
+//SECTION - MODAL BUTTONS
+//Btn to open Modal to add new ingredients
+if (btnOpenModal) {
+  btnOpenModal.addEventListener("click", function () {
+    model.classList.remove("hidden");
+    topFunction(320);
+  });
+}
+// Btn X to close Modal
+if (btncloseModal) {
+  btncloseModal.addEventListener("click", function () {
+    model.classList.add("hidden");
+  });
+}
 
-      // Assigning the attributes to created checkbox
-      checkbox.type = "checkbox";
-      checkbox.name = "condiments";
-      checkbox.value = ing[i];
-      checkbox.id = ing[i];
+//SECTION - DISPLAY NEW CLIENT CREATED ITEM TO PAGE
 
-      // creating label for checkbox
-      let list = document.createElement("li");
-
-      // assigning attributes for the created label tag
-      list.htmlFor = ing[i];
-      list.classList.add("list");
-
-      // appending the created text to
-      // the created label tag
-      list.appendChild(document.createTextNode(ing[i]));
-
-      // appending the checkbox and label to div
-
-      categorie.appendChild(list);
-      list.appendChild(checkbox);
-    }
-  } else {
-    for (let i = 0; i < ing.length; i++) {
-      let option = document.createElement(element);
-      option.text = ing[i];
-
-      categorie.add(option);
-    }
-  }
-};
 //display new Item after adding a new Item
 const displayNewItemsAfterDoneBtn = function (element, ing, categorie) {
   if (element === "input") {
@@ -484,18 +445,63 @@ const displayNewItemsAfterDoneBtn = function (element, ing, categorie) {
     categorie.add(option);
   }
 };
+//function to create and display new item in select or checkbox
+const createAndDisplayNewItemInElement = function (
+  element,
+  storedIngredient,
+  categorie
+) {
+  if (element === "input") {
+    for (let i = 0; i < storedIngredient.length; i++) {
+      let checkbox = document.createElement(element);
 
-//New item appear on load
+      // Assigning the attributes to created checkbox
+      checkbox.type = "checkbox";
+      checkbox.name = "condiments";
+      checkbox.value = storedIngredient[i];
+      checkbox.id = storedIngredient[i];
+
+      // creating list
+      let list = document.createElement("li");
+
+      // assigning ingredient name to the list
+      list.htmlFor = storedIngredient[i];
+
+      // adding the right style to list
+      list.classList.add("list");
+
+      // appending the created text to
+      // createTextNode???
+
+      list.appendChild(document.createTextNode(storedIngredient[i]));
+
+      // appending the list and checkbox  to div
+
+      categorie.appendChild(list);
+      list.appendChild(checkbox);
+    }
+  } else {
+    for (let i = 0; i < storedIngredient.length; i++) {
+      let option = document.createElement(element);
+      option.text = storedIngredient[i];
+
+      categorie.add(option);
+    }
+  }
+};
+//New item  to appear in select or checkbox on load
 window.onload = function () {
   if (window.location.href.indexOf("plan_your_meal.html") > -1) {
-    displayNewItems("option", newIngProtein, breakfastProtein);
-    displayNewItems("option", newIngGrain, breakfastGrain);
-    displayNewItems("option", newIngDairy, breakfastDairy);
-    displayNewItems("option", newIngFruit, breakfastFruit);
-    displayNewItems("option", newIngVeggie, breakfastVeggie);
-    displayNewItems("option", newIngBev, breakfastBeverage);
-    displayNewItems("input", newIngCondiment, breakfastCondiments);
-    // displayNewItems("input", newIngSpice, breakfastSpice);
-    // displayNewItems("input", newIngHerb, breakfastHerb);
+    createAndDisplayNewItemInElement("option", newIngProtein, breakfastProtein);
+    createAndDisplayNewItemInElement("option", newIngGrain, breakfastGrain);
+    createAndDisplayNewItemInElement("option", newIngDairy, breakfastDairy);
+    createAndDisplayNewItemInElement("option", newIngFruit, breakfastFruit);
+    createAndDisplayNewItemInElement("option", newIngVeggie, breakfastVeggie);
+    createAndDisplayNewItemInElement("option", newIngBev, breakfastBeverage);
+    createAndDisplayNewItemInElement(
+      "input",
+      newIngCondiment,
+      breakfastCondiments
+    );
   }
 };
