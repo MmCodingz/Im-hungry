@@ -1,19 +1,32 @@
 body {
   margin: 0px;
+
+  background-image: linear-gradient(
+    rgba(99, 192, 41, 0.611),
+    rgb(232, 236, 232)
+  );
 }
 /* HEADER */
 header {
   min-height: 160px;
   width: 100%;
-  background-image: linear-gradient(#ffcf73, #eb9f2c);
+  /* background-image: linear-gradient(rgb(228, 231, 228)); */
   text-align: center;
   padding-bottom: 20px;
 }
+.meal_header {
+  background-color: rgb(249, 215, 107);
+
+  width: 160px;
+  padding: 10px;
+  border-radius: 10px;
+}
 
 h1 {
-  font-size: 90px;
+  color: whitesmoke;
+  font-size: 120px;
   margin-left: auto;
-  font-weight: 100;
+  font-weight: 200;
   margin-right: auto;
   font-family: "Dancing Script", cursive;
   margin-top: auto;
@@ -23,7 +36,7 @@ h1 {
 i {
   font-size: 90px;
   padding-top: 30px;
-  color: black;
+  color: rgb(0, 0, 0);
 }
 .welcome {
   display: flex;
@@ -33,36 +46,54 @@ i {
   margin-right: auto;
 }
 /* PLAN YOUR MEAL */
-
+.instructions {
+  color: black;
+  width: 100%;
+  height: 50px;
+}
 .container {
-  width: 85%;
+  border-radius: 40px;
+  width: 95%;
   min-height: 1500px;
-  background-color: green;
+  border: solid black;
+  padding-left: 20px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 20px;
+  background-color: white;
 }
 .meal_planing {
-  width: 45%;
+  width: 40%;
   min-height: 1360px;
-  background-color: rgb(218, 150, 150);
 }
 
 /* NAME AND DATES */
 .name_date {
   width: auto;
   min-height: 70px;
-  background-color: yellowgreen;
 }
 
 .display_plan {
   width: 55%;
   min-height: 1360px;
-  background-color: yellow;
+
+  border-radius: 60px;
 }
+.display_day {
+  min-height: 150px;
+  width: 580px;
+  border: solid black;
+  margin-left: 100px;
+  padding-left: 10px;
+  border-radius: 20px;
+}
+.display_h2 {
+  margin-left: 250px;
+}
+
 /* Warnings */
 .warning {
   color: red;
@@ -88,27 +119,28 @@ td {
 .meal {
   font-size: 23px;
 }
-/* .mealClass {
-  margin-left: 20px;
-} */
-/* Table */
 
 /* FONTS */
 .font_username {
   font-size: large;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 900px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 300;
+  margin-left: 5px;
 }
 .font_food {
   font-size: medium;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 200;
-  margin-top: -1px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  font-weight: 900;
+  margin-top: 3px;
+  margin-left: 1px;
 }
 
 .day_of_week {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 200;
   font-size: 25px;
+  margin-top: 2px;
 }
 
 #display_date {
@@ -125,15 +157,7 @@ label {
   margin-right: 20px;
   padding-bottom: 3px;
 }
-/*  */
-/* .nameOfGuess label {
-  margin-bottom: 20px;
-} */
-/* .addmore label {
-  font-size: 18px;
-} */
 
-/*  */
 /* yes modal label */
 .modal label {
   margin: 0px;
@@ -222,13 +246,16 @@ td select {
 .add_more {
   min-width: 90px;
   margin-left: 6px;
-  padding: 4px;
+  padding: 6px;
   margin-top: 2px;
+  border-radius: 3px;
 }
 .add_plan button {
-  padding: 5px;
+  padding: 10px;
   width: 300px;
   border: solid black;
+  border-radius: 10px;
+  background-color: rgb(249, 215, 107);
 }
 .modal_question button {
   float: right;
@@ -260,7 +287,7 @@ td select {
 .pickOne {
   min-width: 500px;
   min-height: 100px;
-  background-color: grey;
+
   line-height: 23px;
   flex-direction: column;
 }

@@ -1,6 +1,10 @@
 body {
   margin: 0px;
-  background-image: linear-gradient(to bottom right, #ffcf73, #eb9f2c);
+  /* background-image: linear-gradient(to bottom right, #ffcf73, #eb9f2c); */
+  background-image: linear-gradient(
+    rgba(99, 192, 41, 0.611),
+    rgb(232, 236, 232)
+  );
   background-repeat: no-repeat;
   background-attachment: fixed;
 }

@@ -1,5 +1,9 @@
 body {
   margin: 0px;
+  background-image: linear-gradient(
+    rgba(99, 192, 41, 0.611),
+    rgb(232, 236, 232)
+  );
 }
 .header_of_right {
   margin-left: 30px;
@@ -19,7 +23,11 @@ h1 {
 .container {
   height: 200%;
   width: 100%;
-  background-image: linear-gradient(to bottom right, #ffcf73, #eb9f2c);
+  /* background-image: linear-gradient(to bottom right, #ffcf73, #eb9f2c); */
+  background-image: linear-gradient(
+    rgba(99, 192, 41, 0.611),
+    rgb(232, 236, 232)
+  );
   position: fixed;
 
   display: flex;
@@ -30,7 +38,7 @@ button {
   min-height: 40px;
   border-radius: 10px;
   text-align: center;
-  background-color: #eb9f2c;
+  background-color: rgba(99, 192, 41, 0.611);
   margin-top: 45px;
   cursor: pointer;
 }

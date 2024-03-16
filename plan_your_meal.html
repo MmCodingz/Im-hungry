@@ -16,7 +16,7 @@
   <body>
     <header>
       <div class="welcome">
-        <h1>Plan your meal.html</h1>
+        <h1>Plan your meal</h1>
         <a href="index.html"><i class="fa-solid fa-carrot"></i></a>
       </div>
       <p class="description">
@@ -59,6 +59,11 @@
         </div>
         <!-- MAIN PAGE -->
         <div class="meal_planing">
+          <p class="instructions">
+            1-Select the day of the week that you would like your meal planning
+            to start as well as the name of the person you are meal planing for.
+          </p>
+          <h2>Name and Day</h2>
           <div class="flex name_date">
             <div class="name_date">
               <div class="date">
@@ -85,6 +90,7 @@
               </div>
             </div>
           </div>
+          <p class="instructions">2- Please select your breakfast Meal</p>
           <h2 class="meal_header">Breakfast</h2>
 
           <div class="homemade">
@@ -199,7 +205,7 @@
 
           <div class="flex condiment">
             <div class="meal">
-              <h3 style="font-size: 15; font-weight: 300">Condiments</h3>
+              <h3 style="font-size: 14; font-weight: 300">Condiments</h3>
 
               <div id="condiment" class="pickOne">
                 <li>
@@ -289,10 +295,14 @@
           </div>
         </div>
 
-        <div class="display_plan"></div>
+        <div class="display_plan">
+          <h2 class="display_h2">Your Weekly Meal</h2>
+
+          <div class="display_day"></div>
+        </div>
       </div>
     </main>
-    <script src="script.js"></script>
+    <script src="plan_your_meal.js"></script>
     <script
       src="https://kit.fontawesome.com/055b193f00.js"
       crossorigin="anonymous"
