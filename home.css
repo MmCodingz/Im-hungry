@@ -2,8 +2,9 @@ body {
   margin: 0px;
   /* background-image: linear-gradient(to bottom right, #ffcf73, #eb9f2c); */
   background-image: linear-gradient(
-    rgba(99, 192, 41, 0.611),
-    rgb(232, 236, 232)
+    to right,
+    rgba(240, 193, 39, 0.775),
+    rgba(242, 174, 27, 0.692)
   );
   background-repeat: no-repeat;
   background-attachment: fixed;

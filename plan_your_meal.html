@@ -12,11 +12,28 @@
       href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Playfair+Display&family=Poppins:ital,wght@1,300&family=Roboto:wght@100&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Just+Another+Hand&family=Oregano:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
       <div class="welcome">
         <h1>Plan your meal</h1>
+
         <a href="index.html"><i class="fa-solid fa-carrot"></i></a>
       </div>
       <p class="description">
@@ -43,14 +60,12 @@
             <div class="motal_cat">
               <label for="categorie">Categorie</label>
               <select name="categorie" id="categorie">
-                <option value="protein">protein</option>
-                <option value="grain">grain</option>
-                <option value="dairy">dairy</option>
-                <option value="fruit">fruit</option>
-                <option value="veggie">veggie</option>
-                <option value="condiment">condiment</option>
-                <option value="spices">spices</option>
-                <option value="herbs">herbs</option>
+                <option value="protein">Protein</option>
+                <option value="grain">Grain</option>
+                <option value="dairy">Dairy</option>
+                <option value="fruit">Fruit</option>
+                <option value="veggie">Veggie</option>
+                <option value="condiment">Condiment and Spreads</option>
               </select>
             </div>
 
@@ -60,8 +75,9 @@
         <!-- MAIN PAGE -->
         <div class="meal_planing">
           <p class="instructions">
-            1-Select the day of the week that you would like your meal planning
-            to start as well as the name of the person you are meal planing for.
+            <span style="font-weight: 800">1</span>-Select the day of the week
+            that you would like your meal planning to start as well as the name
+            of the person you are meal planing for.
           </p>
           <h2>Name and Day</h2>
           <div class="flex name_date">
@@ -90,22 +106,25 @@
               </div>
             </div>
           </div>
-          <p class="instructions">2- Please select your breakfast Meal</p>
+
           <h2 class="meal_header">Breakfast</h2>
 
           <div class="homemade">
             <table>
               <tr class="meal homemade">
+                <p class="instructions">
+                  <span style="font-weight: 800">2</span> -Please select your
+                  breakfast Meal. <br />
+                  <br />
+                  Tip: Click the Add button at the bottom of the page and enter
+                  your favorite recipes in the homemade section for a quick
+                  selection like : Banana Muffins
+                </p>
                 <td>Homemade</td>
                 <td>
                   <select name="homemade" id="homemade">
                     <option value="None">None</option>
-                    <option value="pancake">Pancake</option>
-                    <option value="muffin">muffin</option>
                   </select>
-                  <p class="empty_Select_Warning hidden">
-                    You must select an item
-                  </p>
                 </td>
                 <td><button class="add_more homemade">Add Another?</button></td>
               </tr>
@@ -119,6 +138,19 @@
                 <td>
                   <select name="protein" id="protein">
                     <option value="None">None</option>
+                    <option value="Eggs Scrambled">Eggs Scrambled</option>
+                    <option value="Eggs Sunny-Side-Up">
+                      Eggs Sunny-Side-Up
+                    </option>
+                    <option value="Eggs boiled">Eggs boiled</option>
+                    <option value="Eggs potched">Eggs boiled</option>
+                    <option value="Chia Seed Pudding">Chia Seed Pudding</option>
+                    <option value="Nuts Almond">Nuts Almond</option>
+                    <option value="Nuts Pecans">Nuts Pecans</option>
+                    <option value="Beans Baked">Beans Baked</option>
+                    <option value="Beans Black">Beans Black</option>
+                    <option value="Beans Red kidney">Beans Red kidney</option>
+                    <option value="Beans Red kidney">Beans Red kidney</option>
                     <option value="ChickPeas">ChickPeas</option>
                     <option value="Tofu">Tofu</option>
                   </select>
@@ -134,8 +166,15 @@
                 <td>
                   <select name="grain" id="grain">
                     <option value="None">None</option>
+                    <option value="Oatmeal">Oatmeal</option>
+                    <option value="Rice">Rice</option>
+                    <option value="Croissant">Croissant</option>
+                    <option value="Bagel">Bagel</option>
+                    <option value="English Muffin">English Muffin</option>
                     <option value="Wrap">Wrap</option>
                     <option value="Pasta">Pasta</option>
+                    <option value="Quinoa">Quinoa</option>
+                    <option value="Couscous">Couscous</option>
                   </select>
                 </td>
                 <td><button class="add_more grain">Add Another?</button></td>
@@ -149,7 +188,11 @@
                 <td>
                   <select name="dairy" id="dairy">
                     <option value="None">None</option>
-                    <option value="Chesse">Chesse</option>
+                    <option value="Cheese Cottage">Cheese Cottage</option>
+                    <option value="Cheese Mozza">Cheese Mozza</option>
+                    <option value="Cheese Cheddar">Cheese Cheddar</option>
+                    <option value="Cheese Swiss">Cheese Swiss</option>
+                    <option value="Cheese Feta">Cheese Feta</option>
                     <option value="Yogourt">Yogourt</option>
                   </select>
                 </td>
@@ -165,7 +208,20 @@
                   <select name="fruit" id="fruit">
                     <option value="None">None</option>
                     <option value="Apple">Apple</option>
-                    <option value="Water Melon">Water Melon</option>
+                    <option value="Orange">Orange</option>
+                    <option value="Orange blood Orange">
+                      Orange blood Orange
+                    </option>
+                    <option value="Tangerine">Tangerine</option>
+                    <option value="Grapes">Grapes</option>
+                    <option value="Strawberries">Strawberries</option>
+                    <option value="Blueberries">Blueberries</option>
+                    <option value="Grapefruits">Grapefruits</option>
+                    <option value="Bananna">Bananna</option>
+                    <option value="Melon Cantaloupe">Melon Cantaloupe</option>
+                    <option value="Melon HoneyDew">Melon HoneyDew</option>
+                    <option value="Melon Watermelon">Melon Watermelon</option>
+                    <option value="Dragon fruits">Dragon fruits</option>
                   </select>
                 </td>
                 <td><button class="add_more fruit">Add Another?</button></td>
@@ -175,12 +231,36 @@
           <div class="veggie">
             <table>
               <tr class="meal veggie">
-                <td>Veggies</td>
+                <td>Veggie</td>
                 <td>
                   <select name="veggie" id="veggie">
                     <option value="None">None</option>
                     <option value="Cucumber">Cucumber</option>
                     <option value="Carrot">Carrot</option>
+                    <option value="Carrot Rainbow">Carrot Rainbow</option>
+                    <option value="Carrot baby">Carrot baby</option>
+                    <option value="Peas">Peas</option>
+                    <option value="Peas Snap">Peas Snap</option>
+                    <option value="Lettuce">Lettuce</option>
+                    <option value="Lettuce Romain">Lettuce Romain</option>
+                    <option value="Sprouts Broccoli">Sprouts Broccoli</option>
+                    <option value="Sprouts Alpalpha">Sprouts Alpalpha</option>
+                    <option value="Cabbage Red">Cabbage Red</option>
+                    <option value="Cabbage Green">Cabbage Green</option>
+                    <option value="Tomatoe">Tomatoe</option>
+                    <option value="Tomatoe Grape">Tomatoe Grape</option>
+                    <option value="Onions">Onions</option>
+                    <option value="Potatoe">Potatoe</option>
+                    <option value="Potatoe Sweet">Potatoe Sweet</option>
+
+                    <option value="Potatoe Mash">Potatoe Mash</option>
+                    <option value="Potatoe Baked">Potatoe Baked</option>
+                    <option value="Potatoe Hashbrown">Potatoe Hashbrown</option>
+                    <option value="Potatoe Fries">Potatoe Fries</option>
+                    <option value="Broccoli">Broccoli</option>
+                    <option value="Coliflower">Coliflower</option>
+                    <option value="Olives">Olives</option>
+                    <option value="Pickles">Pickles</option>
                   </select>
                 </td>
                 <td><button class="add_more veggie">Add Another?</button></td>
@@ -195,7 +275,16 @@
                   <select name="beverage" id="beverage">
                     <option value="None">None</option>
                     <option value="Coffee">Coffee</option>
-                    <option value="Juice">Juice</option>
+                    <option value="Tea Black">Tea Black</option>
+                    <option value="Tea Green">Tea Green</option>
+                    <option value="Milk Soy">Milk Soy</option>
+                    <option value="Milk 1%">Milk 1%</option>
+                    <option value="Chocolat Milk">Chocolat Milk</option>
+                    <option value="Juice Orange">Juice Orange</option>
+                    <option value="Juice Apple">Juice Apple</option>
+                    <option value="Juice Grape">Juice Grape</option>
+                    <option value="Juice fruit">Juice fruit</option>
+                    <option value="Sparkeling Water">Sparkeling Water</option>
                   </select>
                 </td>
                 <td><button class="add_more beverage">Add Another?</button></td>
@@ -205,71 +294,73 @@
 
           <div class="flex condiment">
             <div class="meal">
-              <h3 style="font-size: 14; font-weight: 300">Condiments</h3>
+              <h3 style="font-size: 14; font-weight: 300">
+                Condiments And Spreads
+              </h3>
 
               <div id="condiment" class="pickOne">
                 <li>
-                  <label for="ketchup">ketchup</label>
+                  <label for="ketchup">Ketchup</label>
                   <input
                     type="checkbox"
                     name="condiments"
-                    value="ketchup"
+                    value="Ketchup"
                     id="ketchup"
                   />
                 </li>
 
                 <li>
-                  <label for="mayo">mayo</label>
+                  <label for="mayo">Mayo</label>
                   <input
                     type="checkbox"
                     name="condiments"
-                    value="mayo"
+                    value="Mayo"
                     id="mayo"
                   />
                 </li>
                 <li>
-                  <label for="maple syrup">maple syrup</label>
+                  <label for="maple syrup">Maple syrup</label>
                   <input
                     type="checkbox"
                     name="condiments"
-                    value="maple syrup"
+                    value="Maple syrup"
                     id="maple syrup"
                   />
                 </li>
                 <li>
-                  <label for="butter">butter</label>
+                  <label for="butter">Butter</label>
                   <input
                     type="checkbox"
                     name="condiments"
-                    value="butter"
+                    value="Butter"
                     id="butter"
                   />
                 </li>
                 <li>
-                  <label for="hot sauce">hot sauce</label>
+                  <label for="hot sauce">Hot sauce</label>
                   <input
                     type="checkbox"
                     name="condiments"
-                    value="hot sauce"
+                    value="Hot sauce"
                     id="hot sauce"
                   />
                 </li>
                 <li>
-                  <label for="mustard">mustard</label>
+                  <label for="mustard">Mustard</label>
                   <input
                     type="checkbox"
                     name="condiments"
-                    value="mustard"
+                    value="Mustard"
                     id="mustard"
                   />
                 </li>
 
                 <li>
-                  <label for="bbq">bbq</label>
+                  <label for="bbq">Bbq</label>
                   <input
                     type="checkbox"
                     name="condiments"
-                    value="bbq"
+                    value="Bbq"
                     id="bbq"
                   />
                 </li>
@@ -284,7 +375,7 @@
                   Not seing what you are looking for? Click the button below to
                   add your own ingredients
                 </p>
-                <button id="open_modal">Add ingredient</button>
+                <button id="open_modal">Add</button>
               </div>
               <div class="add_plan">
                 <button class="btn_add_plan">Add Breakfast</button>

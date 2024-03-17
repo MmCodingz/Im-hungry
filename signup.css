@@ -25,8 +25,9 @@ h1 {
   width: 100%;
   /* background-image: linear-gradient(to bottom right, #ffcf73, #eb9f2c); */
   background-image: linear-gradient(
-    rgba(99, 192, 41, 0.611),
-    rgb(232, 236, 232)
+    to right,
+    rgba(240, 193, 39, 0.775),
+    rgba(242, 174, 27, 0.692)
   );
   position: fixed;
 
@@ -38,7 +39,7 @@ button {
   min-height: 40px;
   border-radius: 10px;
   text-align: center;
-  background-color: rgba(99, 192, 41, 0.611);
+  background-color: rgba(240, 193, 39);
   margin-top: 45px;
   cursor: pointer;
 }
