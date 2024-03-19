@@ -23,6 +23,7 @@ const dayOfWeek = document.createElement("h4");
 const clientMealPlan = document.querySelector(".display_day");
 const userNameInput = document.createElement("p");
 const breakfast = document.createElement("p");
+
 const lunch = document.createElement("p");
 const supper = document.createElement("p");
 const btnLunch = document.querySelector(".lunch");
@@ -160,8 +161,9 @@ const changeMealHeading = function (meal) {
 const transformFoodItemsToStr = function (...items) {
   const itemArr = items.flat(2);
   const justItems = itemArr.filter((el) => el !== "None");
+  const uniqueItem = new Set(justItems);
 
-  const itemStr = justItems + "";
+  const itemStr = [...uniqueItem] + "";
   const finishedItemStr = itemStr.replaceAll(",", " / ");
 
   return finishedItemStr;
