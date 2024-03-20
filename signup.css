@@ -1,9 +1,5 @@
 body {
   margin: 0px;
-  background-image: linear-gradient(
-    rgba(99, 192, 41, 0.611),
-    rgb(232, 236, 232)
-  );
 }
 .header_of_right {
   margin-left: 30px;
@@ -11,7 +7,7 @@ body {
 .header_of_left {
   height: 900px;
   width: 500px;
-  /* background-color: aquamarine; */
+
   margin-left: 130px;
   margin-top: 120px;
   text-align: center;
@@ -74,7 +70,6 @@ p {
   display: none;
 }
 .error {
-  /* background-color: aliceblue; */
   margin-top: -15px;
   margin-bottom: -10px;
   color: red;
@@ -90,8 +85,6 @@ input[type="checkbox"] {
   position: absolute;
   margin-top: 15px;
   margin-left: 9px;
-  /* -ms-transform: translateY(-50%); */
-  /* transform: translateY(-50%); */
   color: rebeccapurple;
 }
 .checkbox {

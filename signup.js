@@ -15,10 +15,11 @@ const errorCreateEmail = document.querySelector(".errorCreateEmail ");
 const errorCreatePassword = document.querySelector(".errorCreatePassword ");
 const btnAccountCreate = document.getElementById("account_create_button");
 const btnLogin = document.getElementById("loginbtn");
+
 const user = {
-  userName: [],
-  email: [],
-  password: [],
+  userName: "",
+  email: "",
+  password: "",
 };
 let useDeserialezed;
 
@@ -26,9 +27,9 @@ let useDeserialezed;
 
 //NEW USER ACCOUNT DATA
 const createAccount = () => {
-  user.userName.push(createUserName.value);
-  user.email.push(createEmail.value);
-  user.password.push(createPassword.value);
+  user.userName = createUserName.value;
+  user.email = createEmail.value;
+  user.password = createPassword.value;
   const userSerialized = JSON.stringify(user);
   localStorage.setItem("user", userSerialized);
   useDeserialezed = JSON.parse(localStorage.getItem("user"));
@@ -38,7 +39,6 @@ const createAccount = () => {
     useDeserialezed
   );
 };
-
 //CREATE NEW ACCOUNT INFO,MAKING SURE ALL FIELD ARE FILED- FOR NOW JUST EMPTY STRING
 const verificationCreate = function () {
   let autorizationNewAccount = [];
@@ -78,10 +78,10 @@ const verificationCreate = function () {
 // // CHECKING LOGIN INFO
 
 const verificationLogin = function () {
-  let autorization = [false];
+  let autorization = [];
   useDeserialezed = JSON.parse(localStorage.getItem("user"));
-
-  if (userName.value === useDeserialezed.userName[0]) {
+  console.log(userName.value, useDeserialezed.userName);
+  if (userName.value === useDeserialezed.userName) {
     autorization.push(true);
   } else {
     const userError = document.querySelector(".errorUsername");
@@ -89,14 +89,14 @@ const verificationLogin = function () {
     userError.classList.remove("hidden");
     autorization.push(false);
   }
-  if (email.value === useDeserialezed.email[0]) {
+  if (email.value === useDeserialezed.email) {
     autorization.push(true);
   } else {
     const emailError = document.querySelector(".errorEmail");
     emailError.classList.remove("hidden");
     autorization.push(false);
   }
-  if (password.value === useDeserialezed.password[0]) {
+  if (password.value === useDeserialezed.password) {
     autorization.push(true);
   } else {
     const passwordError = document.querySelector(".errorPassword");

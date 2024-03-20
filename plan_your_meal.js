@@ -143,11 +143,10 @@ const resetMealOption = function () {
 };
 
 //function after client is done with a meal selection
-const functionForEachMeal = function () {
+const pushAndStoreItems = function () {
   topFunction(200);
   PushAllElement();
   storingItemInGroceryListObj();
-  // resetMealOption();
 };
 
 //SECTION - FUNCTIONS RELATED TO THE DISPLAY OF THE PAGE
@@ -160,7 +159,9 @@ const changeMealHeading = function (meal) {
 //Take groceryList array and filter none to return appropriate string to display
 const transformFoodItemsToStr = function (...items) {
   const itemArr = items.flat(2);
+
   const justItems = itemArr.filter((el) => el !== "None");
+
   const uniqueItem = new Set(justItems);
 
   const itemStr = [...uniqueItem] + "";
@@ -168,10 +169,8 @@ const transformFoodItemsToStr = function (...items) {
 
   return finishedItemStr;
 };
-//Create Dom element for meals
-const createDomElementBreakfast = function () {
-  let food = transformFoodItemsToStr(grocerieListArr);
-
+//create Dom element for day of week and name
+const createDomElementForDayAndName = function () {
   dayOfWeek.classList.add("day_of_week");
 
   dayOfWeek.innerText = date.value;
@@ -180,31 +179,18 @@ const createDomElementBreakfast = function () {
 
   userNameInput.innerText = `${name1.value} `;
   dayOfWeek.appendChild(userNameInput);
-  breakfast.classList.add("font_food");
-
-  breakfast.innerText = `Breakfast:  ${food}`;
-
-  userNameInput.appendChild(breakfast);
 };
-const createDomElementLunch = function () {
-  let food = transformFoodItemsToStr(grocerieListArr);
+//Create Dom element for meals
+const createDomElementforMeals = function (elementName, nameOfMeal) {
+  let food = transformFoodItemsToStr(...grocerieListArr);
 
-  lunch.classList.add("font_food");
+  elementName.classList.add("font_food");
 
-  lunch.innerText = `Lunch: ${food}`;
+  elementName.innerText = `${nameOfMeal} : ${food}`;
 
-  breakfast.appendChild(lunch);
+  userNameInput.appendChild(elementName);
 };
-const createDomElementSupper = function () {
-  let food = transformFoodItemsToStr(grocerieListArr);
-  console.log(food);
 
-  supper.classList.add("font_food");
-
-  supper.innerText = `Supper: ${food}`;
-
-  lunch.appendChild(supper);
-};
 //Adding New Select When Clicking on Addmore BTN
 const createSelectOnClick = function (selectName, nameOfClass, nameOfDiv) {
   {
@@ -247,8 +233,9 @@ btnBreakfast.addEventListener("click", function () {
   warning();
 
   if (isName) {
-    functionForEachMeal();
-    createDomElementBreakfast();
+    pushAndStoreItems();
+    createDomElementForDayAndName();
+    createDomElementforMeals(breakfast, "Breakfast");
     resetMealOption();
     //changing the button to lunch
     document.querySelector(".lunch").classList.remove("hidden");
@@ -263,8 +250,9 @@ btnBreakfast.addEventListener("click", function () {
 
 // btn add lunch
 btnLunch.addEventListener("click", function () {
-  functionForEachMeal();
-  createDomElementLunch();
+  pushAndStoreItems();
+  createDomElementforMeals(lunch, "Lunch");
+
   resetMealOption();
   document.querySelector(".supper").classList.remove("hidden");
   btnLunch.classList.add("hidden");
@@ -276,8 +264,9 @@ btnLunch.addEventListener("click", function () {
 
 //btn add supper
 btnSupper.addEventListener("click", function () {
-  functionForEachMeal();
-  createDomElementSupper();
+  pushAndStoreItems();
+  createDomElementforMeals(supper, "Supper");
+
   resetMealOption();
 
   btnSupper.classList.add("hidden");
@@ -296,42 +285,43 @@ modalDoneBtn.addEventListener("click", function () {
   model.classList.add("hidden");
   const nameOfNewIngredient = document.getElementById("new_ingredient");
   const catOfNewIngredient = document.getElementById("categorie");
-
-  if (catOfNewIngredient.value === "protein") {
-    newIngProtein.push(nameOfNewIngredient.value);
-    localStorage.setItem("newIngProtein", JSON.stringify(newIngProtein));
-    displayNewItemsAfterDoneBtn("option", newIngProtein, breakfastProtein);
-  }
-  if (catOfNewIngredient.value === "grain") {
-    newIngGrain.push(nameOfNewIngredient.value);
-    localStorage.setItem("newIngGrain", JSON.stringify(newIngGrain));
-    displayNewItemsAfterDoneBtn("option", newIngGrain, breakfastGrain);
-  }
-  if (catOfNewIngredient.value === "dairy") {
-    newIngDairy.push(nameOfNewIngredient.value);
-    localStorage.setItem("newIngDairy", JSON.stringify(newIngDairy));
-    displayNewItemsAfterDoneBtn("option", newIngDairy, breakfastDairy);
-  }
-  if (catOfNewIngredient.value === "fruit") {
-    newIngFruit.push(nameOfNewIngredient.value);
-    localStorage.setItem("newIngFruit", JSON.stringify(newIngFruit));
-    displayNewItemsAfterDoneBtn("option", newIngFruit, breakfastFruit);
-  }
-  if (catOfNewIngredient.value === "veggie") {
-    newIngVeggie.push(nameOfNewIngredient.value);
-    localStorage.setItem("newIngVeggie", JSON.stringify(newIngVeggie));
-    displayNewItemsAfterDoneBtn("option", newIngVeggie, breakfastVeggie);
-  }
-  if (catOfNewIngredient.value === "beverage") {
-    newIngBev.push(nameOfNewIngredient.value);
-    localStorage.setItem("newIngBev", JSON.stringify(newIngBev));
-    displayNewItemsAfterDoneBtn("option", newIngBev, breakfastBeverage);
-  }
-  if (catOfNewIngredient.value === "condiment") {
-    const pickone = document.getElementById("condiment");
-    newIngCondiment.push(nameOfNewIngredient.value);
-    localStorage.setItem("newIngCondiment", JSON.stringify(newIngCondiment));
-    displayNewItemsAfterDoneBtn("input", newIngCondiment, pickone);
+  let catOfNewIng = catOfNewIngredient.value;
+  switch (catOfNewIng) {
+    case "protein":
+      newIngProtein.push(nameOfNewIngredient.value);
+      localStorage.setItem("newIngProtein", JSON.stringify(newIngProtein));
+      displayNewItemsAfterDoneBtn("option", newIngProtein, breakfastProtein);
+      break;
+    case "grain":
+      newIngGrain.push(nameOfNewIngredient.value);
+      localStorage.setItem("newIngGrain", JSON.stringify(newIngGrain));
+      displayNewItemsAfterDoneBtn("option", newIngGrain, breakfastGrain);
+      break;
+    case "dairy":
+      newIngDairy.push(nameOfNewIngredient.value);
+      localStorage.setItem("newIngDairy", JSON.stringify(newIngDairy));
+      displayNewItemsAfterDoneBtn("option", newIngDairy, breakfastDairy);
+      break;
+    case "fruit":
+      newIngFruit.push(nameOfNewIngredient.value);
+      localStorage.setItem("newIngFruit", JSON.stringify(newIngFruit));
+      displayNewItemsAfterDoneBtn("option", newIngFruit, breakfastFruit);
+      break;
+    case "veggie":
+      newIngVeggie.push(nameOfNewIngredient.value);
+      localStorage.setItem("newIngVeggie", JSON.stringify(newIngVeggie));
+      displayNewItemsAfterDoneBtn("option", newIngVeggie, breakfastVeggie);
+      break;
+    case "beverage":
+      newIngBev.push(nameOfNewIngredient.value);
+      localStorage.setItem("newIngBev", JSON.stringify(newIngBev));
+      displayNewItemsAfterDoneBtn("option", newIngBev, breakfastBeverage);
+      break;
+    case "condiment":
+      const pickone = document.getElementById("condiment");
+      newIngCondiment.push(nameOfNewIngredient.value);
+      localStorage.setItem("newIngCondiment", JSON.stringify(newIngCondiment));
+      displayNewItemsAfterDoneBtn("input", newIngCondiment, pickone);
   }
 });
 
