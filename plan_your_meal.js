@@ -254,6 +254,7 @@ btnLunch.addEventListener("click", function () {
   createDomElementforMeals(lunch, "Lunch");
 
   resetMealOption();
+  //changing the button to supper
   document.querySelector(".supper").classList.remove("hidden");
   btnLunch.classList.add("hidden");
   changeMealHeading("Supper");
@@ -369,13 +370,13 @@ if (localStorageContentCondiment !== null) {
 //SECTION - MODAL BUTTONS
 //Btn to open Modal to add new ingredients
 btnOpenModal.addEventListener("click", function () {
-  model.classList.remove("hidden");
+  modal.classList.remove("hidden");
   topFunction(320);
 });
 
 // Btn X to close Modal
 btncloseModal.addEventListener("click", function () {
-  model.classList.add("hidden");
+  modal.classList.add("hidden");
 });
 
 //SECTION - DISPLAY NEW CLIENT CREATED ITEM TO PAGE
