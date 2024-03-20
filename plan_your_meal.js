@@ -14,7 +14,7 @@ const list = document.querySelector(".list");
 let groceryListStorage;
 const btnOpenModal = document.getElementById("open_modal");
 const btncloseModal = document.querySelector(".close_modal");
-const model = document.querySelector(".modal");
+const modal = document.querySelector(".modal");
 const btnAddMore = document.querySelectorAll(".add_more");
 // const modalQuestion = document.querySelector(".modal_question");
 const modalDoneBtn = document.querySelector(".done");
@@ -282,44 +282,44 @@ const storingItemInGroceryListObj = function () {
 //Adding new Ing to storage and displaying new ingredient into their appropriate area
 
 modalDoneBtn.addEventListener("click", function () {
-  model.classList.add("hidden");
-  const nameOfNewIngredient = document.getElementById("new_ingredient");
+  modal.classList.add("hidden");
+  const newIngredientElement = document.getElementById("new_ingredient");
   const catOfNewIngredient = document.getElementById("categorie");
   let catOfNewIng = catOfNewIngredient.value;
   switch (catOfNewIng) {
     case "protein":
-      newIngProtein.push(nameOfNewIngredient.value);
+      newIngProtein.push(newIngredientElement.value);
       localStorage.setItem("newIngProtein", JSON.stringify(newIngProtein));
       displayNewItemsAfterDoneBtn("option", newIngProtein, breakfastProtein);
       break;
     case "grain":
-      newIngGrain.push(nameOfNewIngredient.value);
+      newIngGrain.push(newIngredientElement.value);
       localStorage.setItem("newIngGrain", JSON.stringify(newIngGrain));
       displayNewItemsAfterDoneBtn("option", newIngGrain, breakfastGrain);
       break;
     case "dairy":
-      newIngDairy.push(nameOfNewIngredient.value);
+      newIngDairy.push(newIngredientElement.value);
       localStorage.setItem("newIngDairy", JSON.stringify(newIngDairy));
       displayNewItemsAfterDoneBtn("option", newIngDairy, breakfastDairy);
       break;
     case "fruit":
-      newIngFruit.push(nameOfNewIngredient.value);
+      newIngFruit.push(newIngredientElement.value);
       localStorage.setItem("newIngFruit", JSON.stringify(newIngFruit));
       displayNewItemsAfterDoneBtn("option", newIngFruit, breakfastFruit);
       break;
     case "veggie":
-      newIngVeggie.push(nameOfNewIngredient.value);
+      newIngVeggie.push(newIngredientElement.value);
       localStorage.setItem("newIngVeggie", JSON.stringify(newIngVeggie));
       displayNewItemsAfterDoneBtn("option", newIngVeggie, breakfastVeggie);
       break;
     case "beverage":
-      newIngBev.push(nameOfNewIngredient.value);
+      newIngBev.push(newIngredientElement.value);
       localStorage.setItem("newIngBev", JSON.stringify(newIngBev));
       displayNewItemsAfterDoneBtn("option", newIngBev, breakfastBeverage);
       break;
     case "condiment":
       const pickone = document.getElementById("condiment");
-      newIngCondiment.push(nameOfNewIngredient.value);
+      newIngCondiment.push(newIngredientElement.value);
       localStorage.setItem("newIngCondiment", JSON.stringify(newIngCondiment));
       displayNewItemsAfterDoneBtn("input", newIngCondiment, pickone);
   }
