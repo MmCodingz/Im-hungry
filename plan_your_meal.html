@@ -72,6 +72,18 @@
             <button class="done">Done</button>
           </div>
         </div>
+        <div class="week_is_full hidden">
+          <h3>
+            Your week is full! Would you like to create a Meal Plan for someone
+            else or start a Meal Plan for another week?
+          </h3>
+
+          <button class="btn_plan_for_someon_else">
+            Plan for someone else
+          </button>
+          <button class="btn_start_new_week">Start another week</button>
+        </div>
+
         <!-- MAIN PAGE -->
         <div class="meal_planing">
           <p class="instructions">
@@ -378,7 +390,10 @@
                 <button id="open_modal">Add</button>
               </div>
               <div class="add_plan">
-                <button class="btn_add_plan">Add Breakfast</button>
+                <button class="btn_add_plan start">Add Breakfast start</button>
+                <button class="btn_add_plan breakfast hidden">
+                  Add Breakfast
+                </button>
                 <button class="btn_add_plan lunch hidden">Add Lunch</button>
                 <button class="btn_add_plan supper hidden">Add Supper</button>
               </div>
@@ -390,6 +405,7 @@
           <h2 class="display_h2">Your Weekly Meal</h2>
 
           <div class="display_day"></div>
+          <button class="hidden save_meal_btn">Save your meal</button>
         </div>
       </div>
     </main>

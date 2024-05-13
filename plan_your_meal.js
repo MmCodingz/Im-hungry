@@ -1,6 +1,6 @@
 const date = document.getElementById("date");
 const client = document.getElementById("name");
-const btnBreakfast = document.querySelector(".btn_add_plan");
+const btnBreakfast = document.querySelector(".breakfast");
 const homemadeBreakfast = document.getElementById("homemade");
 const breakfastProtein = document.getElementById("protein");
 const breakfastGrain = document.getElementById("grain");
@@ -18,9 +18,12 @@ const modal = document.querySelector(".modal");
 const btnAddMore = document.querySelectorAll(".add_more");
 // const modalQuestion = document.querySelector(".modal_question");
 const modalDoneBtn = document.querySelector(".done");
+const saveMealBtn = document.querySelector(".save_meal_btn");
 
 const dayOfWeek = document.createElement("h4");
-const clientMealPlan = document.querySelector(".display_day");
+const weekNumber = document.createElement("h4");
+
+const clientMealPlanContainer = document.querySelector(".display_day");
 const userNameInput = document.createElement("p");
 const breakfast = document.createElement("p");
 
@@ -28,16 +31,31 @@ const lunch = document.createElement("p");
 const supper = document.createElement("p");
 const btnLunch = document.querySelector(".lunch");
 const btnSupper = document.querySelector(".supper");
+const btnBreakfastStart = document.querySelector(".start");
+const btnplanforSomeoneElse = document.querySelector(
+  ".btn_plan_for_someon_else"
+);
+const btn_start_new_week = document.querySelector(".btn_start_new_week");
+const heading = document.querySelector(".meal_header");
+//Starting week
+let weekNum = 1;
+const weekArr = [];
+//Starting user
+let userNum = 1;
+
 let isName = false;
 let newSelect;
 let newtable;
 //
 //
+//storage try out
+
 //SECTION - DISABLE INPUT FIELD AND NO NAME WARNING
 const disableNameAndDate = function (isDisabled) {
   document.getElementById("name1").disabled = isDisabled;
   document.getElementById("date").disabled = isDisabled;
 };
+//ADD WARNING SIGN IF USER DIDNT INPUT A NAME
 const warning = function () {
   const noName = document.querySelector(".name_warning ");
   if (name1.value === "") {
@@ -49,9 +67,12 @@ const warning = function () {
   }
 };
 
-//SECTION - GROCERYLIST RELATED CODE
+//SECTION - USERS,GROCERYLIST AND DAY OBJECT RELATED CODE
 
-//Adding item to the grocery list page
+// USERS OBJECT
+const users = {
+  user1: { name: "", week: [], breakfast: [], lunch: [], supper: [] },
+};
 
 //grocerieListObject
 let grocerieList = {
@@ -67,6 +88,7 @@ let grocerieList = {
   spices: [],
   beverage: [],
 };
+
 //grocerieList element arr
 let grocerieListArr = [
   grocerieList.homemade,
@@ -82,6 +104,7 @@ let grocerieListArr = [
 ];
 
 //!SECTION PUSHING ALL SELECT AND CHECKBOX TO GROCERYLIST
+
 const PushAllElement = function () {
   addNewSelectToGroList("homemade", grocerieList.homemade);
   addNewSelectToGroList("protein", grocerieList.protein);
@@ -90,14 +113,17 @@ const PushAllElement = function () {
   addNewSelectToGroList("fruit", grocerieList.fruit);
   addNewSelectToGroList("veggie", grocerieList.veggie);
   addNewSelectToGroList("beverage", grocerieList.beverage);
+
   addCheckboxItems();
 };
+//ADDIND NEW CREATED SELECT TO GROCERYLIST OBJ
 const addNewSelectToGroList = function (elemntClassName, categorie) {
   const addedSelects = document.getElementsByName(elemntClassName);
   for (let i = 0; i < addedSelects.length; i++) {
     categorie.push(addedSelects[i].value);
   }
 };
+//ADD CHECKBOX ITEM TO GROCERY LIST
 const addCheckboxItems = function () {
   const condiments = document.getElementsByName("condiments");
 
@@ -110,6 +136,28 @@ const addCheckboxItems = function () {
 };
 
 //SECTION -REUSABLE FUNCTION
+
+//Day changing function
+function dayChange(day) {
+  const dayArray = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  let nextDay;
+  for (let i = 0; i < dayArray.length; i++) {
+    if (day === dayArray[i] && day !== "Sunday") {
+      nextDay = dayArray[i + 1];
+      date.value = nextDay;
+    } else if (day === "Sunday") {
+      date.value = "Monday";
+    }
+  }
+}
 
 //Scroll up the page function
 function topFunction(number) {
@@ -138,7 +186,6 @@ const resetMealOption = function () {
       condiment[i].checked = false;
     }
   }
-
   grocerieListArr.map((el) => (el.length = 0));
 };
 
@@ -146,14 +193,16 @@ const resetMealOption = function () {
 const pushAndStoreItems = function () {
   topFunction(200);
   PushAllElement();
-  storingItemInGroceryListObj();
+
+  // storingItemInGroceryListObj();
 };
 
 //SECTION - FUNCTIONS RELATED TO THE DISPLAY OF THE PAGE
+
 //Change the meal  heading  to Lunch or supper
-const changeMealHeading = function (meal) {
-  const heading = document.querySelector(".meal_header");
+const changeMealHeading = function (meal, color) {
   heading.textContent = meal;
+  heading.style.backgroundColor = color;
 };
 
 //Take groceryList array and filter none to return appropriate string to display
@@ -169,18 +218,25 @@ const transformFoodItemsToStr = function (...items) {
 
   return finishedItemStr;
 };
-//create Dom element for day of week and name
+
+//Create and Display week 1 on client meal board
+const createDomElementForWeekNum = function () {
+  weekNumber.classList.add("weeknumb");
+  weekNumber.innerText = `Week ${weekNum}`;
+  clientMealPlanContainer.appendChild(weekNumber);
+};
+//create Dom element for day of week and name on client meal board
 const createDomElementForDayAndName = function () {
   dayOfWeek.classList.add("day_of_week");
 
-  dayOfWeek.innerText = date.value;
-  clientMealPlan.appendChild(dayOfWeek);
+  dayOfWeek.innerText = `${date.value}`;
+  clientMealPlanContainer.appendChild(dayOfWeek);
   userNameInput.classList.add("font_username");
 
   userNameInput.innerText = `${name1.value} `;
   dayOfWeek.appendChild(userNameInput);
 };
-//Create Dom element for meals
+//Create Dom element for meals on client meal board
 const createDomElementforMeals = function (elementName, nameOfMeal) {
   let food = transformFoodItemsToStr(...grocerieListArr);
 
@@ -224,61 +280,162 @@ const createDomElementSelect = function (name, nameOfClass, nameOfDiv) {
   newtable.appendChild(newSelect);
   newDiv.appendChild(newtable);
 };
-//
-//!SECTION MEAL BTN
 
-//btn add breakfast
-btnBreakfast.addEventListener("click", function () {
+//Adding beggining day of meal plan to weekArr
+weekArr.push(date.value);
+
+// starting with week one
+createDomElementForWeekNum();
+
+//Create a new user
+const changingUsers = function () {
+  let user = `user${userNum}`;
+  console.log(user);
+  return user;
+};
+// Storing name and week number in users obj
+const storeNameAndWeekInObject = function (propertie) {
+  users[propertie].name = name1.value;
+  // console.log(users[propertie].name);
+
+  users[propertie].week.push(weekNum);
+};
+//storing each meal to object
+const storeMealInObject = function (propertie, meal) {
+  users[propertie][meal].push(transformFoodItemsToStr(...grocerieListArr));
+};
+
+//!SECTION MEAL BTN
+//btn add BREAKFAST START OF EVERY NEW WEEK
+
+btnBreakfastStart.addEventListener("click", function () {
   topFunction();
   warning();
 
   if (isName) {
-    pushAndStoreItems();
     createDomElementForDayAndName();
+    pushAndStoreItems();
+    storeNameAndWeekInObject(changingUsers());
+    storeMealInObject(changingUsers(), "breakfast");
+
     createDomElementforMeals(breakfast, "Breakfast");
     resetMealOption();
+
     //changing the button to lunch
-    document.querySelector(".lunch").classList.remove("hidden");
-    btnBreakfast.classList.add("hidden");
+    btnLunch.classList.remove("hidden");
+    btnBreakfastStart.classList.add("hidden");
 
     document.querySelector(".meal_header").style.backgroundColor =
       " rgb(5, 245, 165)";
-    changeMealHeading("Lunch");
-    btnLunch.style.backgroundColor = " rgb(5, 245, 165)";
+    changeMealHeading("Lunch", " rgb(5, 245, 165)");
   }
 });
+//btn BREAKFAST
+btnBreakfast.addEventListener("click", function () {
+  // fullWeek(weekArr);
+  console.log("break");
 
-// btn add lunch
-btnLunch.addEventListener("click", function () {
   pushAndStoreItems();
+  storeMealInObject(changingUsers(), "breakfast");
+
+  createDomElementforMeals(breakfast, "Breakfast");
+
+  resetMealOption();
+
+  //changing the button to lunch
+  btnLunch.classList.remove("hidden");
+  btnBreakfast.classList.add("hidden");
+
+  document.querySelector(".meal_header").style.backgroundColor =
+    " rgb(5, 245, 165)";
+  changeMealHeading("Lunch", " rgb(5, 245, 165)");
+});
+
+// btn LUNCH
+btnLunch.addEventListener("click", function () {
+  console.log("lunch");
+
+  pushAndStoreItems();
+  storeMealInObject(changingUsers(), "lunch");
+
   createDomElementforMeals(lunch, "Lunch");
 
   resetMealOption();
   //changing the button to supper
   document.querySelector(".supper").classList.remove("hidden");
   btnLunch.classList.add("hidden");
-  changeMealHeading("Supper");
-  document.querySelector(".meal_header").style.backgroundColor =
-    " rgb(242, 66, 66)";
-  btnSupper.style.backgroundColor = " rgb(242, 66, 66)";
+  changeMealHeading("Supper", " rgb(242, 66, 66)");
 });
 
-//btn add supper
+//btn SUPPER
 btnSupper.addEventListener("click", function () {
   pushAndStoreItems();
+  storeMealInObject(changingUsers(), "supper");
+
   createDomElementforMeals(supper, "Supper");
+  // storingItemInGroceryListObj(date.value);
 
   resetMealOption();
 
+  // changeMealHeading("BreakFast", "rgb(249, 215, 107)");
   btnSupper.classList.add("hidden");
-});
+  heading.classList.add("hidden");
 
+  saveMealBtn.classList.remove("hidden");
+});
+//btn SAVE YOUR MEAL
+saveMealBtn.addEventListener("click", function () {
+  dayChange(date.value);
+  createDomElementForDayAndName();
+  weekArr.push(date.value);
+  // console.log(grocerieList.fruit);
+  heading.classList.remove("hidden");
+
+  changeMealHeading("Breakfast", " rgb(249, 215, 107)");
+  saveMealBtn.classList.add("hidden");
+  btnBreakfast.classList.remove("hidden");
+
+  for (let j = 1; j < weekArr.length; j++) {
+    if (weekArr[j] === "Wednesday") {
+      console.log("yes");
+      const weekIsFullModal = document.querySelector(".week_is_full");
+
+      weekIsFullModal.classList.remove("hidden");
+    }
+  }
+});
+//button PLAN FOR SOMEONE ELSE
+btnplanforSomeoneElse.addEventListener("click", function () {});
+//button START A NEW WEEK
+btn_start_new_week.addEventListener("click", function () {
+  userNum++;
+  weekIsFullModal.classList.add("hidden");
+  btnBreakfastStart.classList.remove("hidden");
+});
+//REVIEW - Working on adding users object to local storage
 //SECTION - LOCAL STORAGE
 // Storing groceryList object to Local Storage
-const storingItemInGroceryListObj = function () {
-  const groceryListstorageStr = JSON.stringify(grocerieList);
-  localStorage.setItem("grocerieList", groceryListstorageStr);
-};
+//FIXME - NEED TO BE ADJUSTED AFTER WORKING OUT USERS OBJECTS
+// const storingItemInGroceryListObj = function (day) {
+//   switch (day) {
+//     case "Monday":
+//       localStorage.setItem("mondayMeal", JSON.stringify(monday));
+//       const localStorageContentMonday = localStorage.getItem("mondayMeal");
+//       if (localStorageContentMonday !== null) {
+//         mondayMeal = JSON.parse(localStorageContentMonday);
+//       }
+//       console.log(localStorageContentMonday, "localStorageContentMonday ");
+
+//       break;
+//     case "Tuesday":
+//       localStorage.setItem("tuesdayMeal", JSON.stringify(tuesday));
+//       const localStorageContentTuesday = localStorage.getItem("tuesdayMeal");
+//       if (localStorageContentTuesday !== null) {
+//         tuesdayMeal = JSON.parse(localStorageContentTuesday);
+//       }
+//       console.log(localStorageContentTuesday, "localStorageContenttuesday ");
+//   }
+// };
 
 //Adding new Ing to storage and displaying new ingredient into their appropriate area
 
